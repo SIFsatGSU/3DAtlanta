@@ -25,6 +25,8 @@ public class Player_1_Controller : MonoBehaviour {
 	bool pressJump;
 	bool pressLeftMouseButton;
 	public bool isVRCamera;
+    float downwardSpeed = 1;
+    bool jumpable = true;
 
 	//PUBLIC VARIABLES
 	public float buttonAlreadyPressedTimer = 0f;
@@ -137,9 +139,11 @@ public class Player_1_Controller : MonoBehaviour {
 			pressLeftMouseButton = Input.GetMouseButton (0);
 
 
-			if(pressJump){
-				controller.Move (Vector3.up * Time.deltaTime * 20);
-			}
+			if(pressJump && jumpable){
+                //controller.Move (Vector3.up * Time.deltaTime * 20);
+                downwardSpeed = -10;
+                jumpable = false;
+            }
 
 			if (pressLeftOrRight > 0) { //If Pressing Right
 				controller.transform.Rotate(Vector3.up * 5);
@@ -157,9 +161,10 @@ public class Player_1_Controller : MonoBehaviour {
 				controller.Move (controller.transform.forward *-1 * Time.deltaTime * movementSpeed);
 			}
 
-			//Apply Gravity
-			controller.Move (Vector3.down * Time.deltaTime * movementSpeed);
-
+			//Apply Gravity (with increasing gravity)
+			controller.Move (Vector3.down * Time.deltaTime * downwardSpeed);
+            if (downwardSpeed < 10)
+                downwardSpeed += .5f;
 		
 
 
@@ -440,4 +445,10 @@ public class Player_1_Controller : MonoBehaviour {
 		transform.position = tempPosition;
 		
 	}
+
+    void OnControllerColliderHit(ControllerColliderHit collider) {
+        if (collider.gameObject.tag.Contains("ground")) {
+            jumpable = true;
+        }
+    }
 }

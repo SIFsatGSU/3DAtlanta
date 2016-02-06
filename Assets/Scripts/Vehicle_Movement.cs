@@ -20,7 +20,7 @@ public class Vehicle_Movement : MonoBehaviour {
 	public Vector3 destinationNode = Vector3.zero;
 
 	public GameObject vehicleTrackNodes;
-	public int currentNodeIndex;
+	public int currentNodeIndex = 0;
 
 	public float vehicleSpeed = 15f;
 

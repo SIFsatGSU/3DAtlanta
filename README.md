@@ -17,3 +17,5 @@ The workflow branches like this:
  - Blender Experts in both Unity and CityEngine team combine together to build buildings in area locale.
  - Unity team receives and builds scripts and environment to game demo and relevant character/story for that building is added if applicable.  
  - Outside of this technical process, the Research Team focuses on the historical objectives for the area locale, and tries to bring anything from the [Special Collections](http://library.gsu.edu/search-collections/special-collections-archives/).
+
+ Read more about the project workflow in the [Wiki](https://github.com/SIFsatGSU/3DAtlanta/wiki). 

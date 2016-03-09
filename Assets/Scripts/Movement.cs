@@ -8,6 +8,8 @@ public class Movement : MonoBehaviour {
     public float jumpStrenth;
     private new Rigidbody rigidbody;
     private bool jumpable = true;
+    private float groundTime = 0;
+
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
@@ -16,19 +18,22 @@ public class Movement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         // Movement input
-        float verticalMovement = Input.GetAxisRaw("Vertical");
-        Vector3 forwardVector = transform.forward * verticalMovement;
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-        Vector3 rightVector = transform.right * horizontalMovement;
+        if (jumpable) { // Player also needs to be grounded to move
+            float verticalMovement = Input.GetAxisRaw("Vertical");
+            Vector3 forwardVector = transform.forward * verticalMovement;
+            float horizontalMovement = Input.GetAxisRaw("Horizontal");
+            Vector3 rightVector = transform.right * horizontalMovement;
 
-        Vector3 movementVector = forwardVector + rightVector;
-        movementVector.Normalize();
-        
-        rigidbody.AddForce(movementVector * acceleration / Time.deltaTime);
+            Vector3 movementVector = forwardVector + rightVector;
+            movementVector.Normalize();
+
+            rigidbody.AddForce(movementVector * acceleration / Time.deltaTime);
+        }
 
         if (Input.GetAxisRaw("Jump") > 0 && jumpable) {
             rigidbody.AddForce(transform.up * jumpStrenth);
             jumpable = false;
+            groundTime = 0;
         }
 
         float currentVelocity = Mathf.Sqrt(
@@ -40,7 +45,14 @@ public class Movement : MonoBehaviour {
             currentVector.z = currentVector.z * maxSpeed / currentVelocity;
             rigidbody.velocity = currentVector;
         }
-	}
+
+        if (Mathf.Abs(rigidbody.velocity.y) < 0.01) {
+            groundTime += Time.deltaTime;
+            if (groundTime >= .1) {
+                jumpable = true;
+            }
+        }
+    }
 
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag.Contains("Ground")) {

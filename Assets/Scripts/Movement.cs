@@ -4,11 +4,13 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 public class Movement : MonoBehaviour {
     public float acceleration;
-    public float maxSpeed;
+    public float walkingSpeed;
+    public float runningSpeed;
     public float jumpStrenth;
     private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
+    private Vector3 velocity = new Vector3();
 
 	// Use this for initialization
 	void Start () {
@@ -26,8 +28,19 @@ public class Movement : MonoBehaviour {
 
             Vector3 movementVector = forwardVector + rightVector;
             movementVector.Normalize();
-
-            rigidbody.AddForce(movementVector * acceleration / Time.deltaTime);
+            if (movementVector.magnitude > 0) {
+                rigidbody.velocity += movementVector * acceleration / Time.deltaTime;
+                float currentVelocity = Mathf.Sqrt(
+                    rigidbody.velocity.x * rigidbody.velocity.x
+                    + rigidbody.velocity.z * rigidbody.velocity.z);
+                float maxSpeed = (Input.GetAxisRaw("Run") > 0) ? runningSpeed : walkingSpeed;
+                if (currentVelocity > maxSpeed) {
+                    Vector3 currentVector = rigidbody.velocity;
+                    currentVector.x = currentVector.x * maxSpeed / currentVelocity;
+                    currentVector.z = currentVector.z * maxSpeed / currentVelocity;
+                    rigidbody.velocity = currentVector;
+                }
+            }
         }
 
         if (Input.GetAxisRaw("Jump") > 0 && jumpable) {
@@ -36,15 +49,7 @@ public class Movement : MonoBehaviour {
             groundTime = 0;
         }
 
-        float currentVelocity = Mathf.Sqrt(
-            rigidbody.velocity.x * rigidbody.velocity.x
-            + rigidbody.velocity.z * rigidbody.velocity.z);
-        if (currentVelocity > maxSpeed) {
-            Vector3 currentVector = rigidbody.velocity;
-            currentVector.x = currentVector.x * maxSpeed / currentVelocity;
-            currentVector.z = currentVector.z * maxSpeed / currentVelocity;
-            rigidbody.velocity = currentVector;
-        }
+
 
         if (Mathf.Abs(rigidbody.velocity.y) < 0.01) {
             groundTime += Time.deltaTime;

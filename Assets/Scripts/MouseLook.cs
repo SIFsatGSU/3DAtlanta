@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-[RequireComponent(typeof(Rigidbody))]
+
 public class MouseLook : MonoBehaviour {
     public float sensitivityX;
     public float sensitivityY;
@@ -10,7 +10,6 @@ public class MouseLook : MonoBehaviour {
     private float rotationY = 0;
     // Use this for initialization
     void Start () {
-        rigidbody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame

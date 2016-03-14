@@ -10,7 +10,6 @@ public class Movement : MonoBehaviour {
     private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
-    private Vector3 velocity = new Vector3();
 
 	// Use this for initialization
 	void Start () {

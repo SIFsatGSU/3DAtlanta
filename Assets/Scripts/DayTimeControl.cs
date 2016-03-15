@@ -1,25 +1,35 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/* This script manipulate the time of the day, the animation of the directional light
+ * as well as the intensity of the ambient light and street light. We manually control
+ * the directional light's animation time instead of letting it flow by itself.
+*/
+
+using UnityEngine;
 
 [RequireComponent(typeof(Light))]
+[RequireComponent(typeof(Animator))]
 public class DayTimeControl : MonoBehaviour {
     public float initialTime;
     public float timeFlowingRate; // Measured as (In game) Hours per (Real life) second
+    // 0 <= sunRiseTime < noonTime < sunSetTime < 24
     public float sunRiseTime;
+    public float noonTime;
     public float sunSetTime;
+
     public float streetLightOnTime;
     public float streetLightOffTime;
-    public float maxSunIntensity;
-    public float maxAmbientIntensity;
-    public Color sunRiseColor;
-    public Color sunNoonColor;
-    public Color sunSetColor;
+    public float sunlightToAmbientCoefficient;
     public float currentTime;
-    
+
+    private Animator animator;
     private Light sunLight;
+
+    // To prevent the script from keeping looping while there's nothing to change
+    private bool streetLightTurned = true;
+
     // Use this for initialization
 	void Start () {
         sunLight = GetComponent<Light>();
+        animator = GetComponent<Animator>();
         currentTime = initialTime;
     }
 	
@@ -29,31 +39,22 @@ public class DayTimeControl : MonoBehaviour {
         currentTime %= 24;
 
         float alpha;
-        float sunAngle = 0;
-        Color sunColor = sunRiseColor;
-
-        if (currentTime < 12) {
-            alpha = (currentTime - sunRiseTime) / (12 - sunRiseTime);
-            sunAngle = linear(0, 90, alpha);
-            sunColor.r = exponential(sunRiseColor.r, sunNoonColor.r, Mathf.Clamp01(alpha), 0.5f);
-            sunColor.g = exponential(sunRiseColor.g, sunNoonColor.g, Mathf.Clamp01(alpha), 0.5f);
-            sunColor.b = exponential(sunRiseColor.b, sunNoonColor.b, Mathf.Clamp01(alpha), 0.5f);
-        }
-        else {
-            alpha = (currentTime - 12) / (sunSetTime - 12);
-            sunAngle = linear(90, 180, alpha);
-            sunColor.r = exponential(sunNoonColor.r, sunSetColor.r, Mathf.Clamp01(alpha), 2);
-            sunColor.g = exponential(sunNoonColor.g, sunSetColor.g, Mathf.Clamp01(alpha), 2);
-            sunColor.b = exponential(sunNoonColor.b, sunSetColor.b, Mathf.Clamp01(alpha), 2);
+        if (currentTime < noonTime) { // When time is between sunrise and noon.
+            alpha = (currentTime - sunRiseTime) / (noonTime - sunRiseTime);
+            // When currentTime = sunRiseTime, the animation time is 0.
+            // When currentTime = noonTime, the animation time is .25 (where we set the sun at 90 degrees).
+            animator.SetTime(linear(0, .25f, alpha));
+        } else {
+            alpha = (currentTime - noonTime) / (sunSetTime - noonTime);
+            // When currentTime = noonTime, the animation time is .25.
+            // When currentTime = sunSetTime, the animation time is .5 (where the sun sets).
+            animator.SetTime(linear(.25f, .5f, alpha));
         }
 
-        float sunIntensity = linear(0, maxSunIntensity, Mathf.Sin(sunAngle * Mathf.PI / 180));
-        float ambientIntensity = exponential(0, maxAmbientIntensity, Mathf.Clamp01(Mathf.Sin(sunAngle * Mathf.PI / 180)), 0.5f); 
+        // Change the intensity of the ambient light according to the intensity of the sunlight.
+        RenderSettings.ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
 
-        sunLight.intensity = sunIntensity;
-        sunLight.transform.localEulerAngles = new Vector3(sunAngle, 90, 0);
-        sunLight.color = sunColor;
-        RenderSettings.ambientIntensity = ambientIntensity;
+        // Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {
             turnStreetLight(true);
         } else {
@@ -62,19 +63,17 @@ public class DayTimeControl : MonoBehaviour {
     }
 
     void turnStreetLight(bool turn) {
-        GameObject[] streetLight = GameObject.FindGameObjectsWithTag("Street Light");
-        foreach (GameObject light in streetLight) {
-            ((Light) light.GetComponent(typeof(Light))).enabled = turn;
+        if (streetLightTurned != turn) { // Only execute when there's a change
+            streetLightTurned = turn;
+            GameObject[] streetLight = GameObject.FindGameObjectsWithTag("Street Light");
+            foreach (GameObject light in streetLight) {
+                ((Light) light.GetComponent(typeof(Light))).enabled = turn;
+            }
         }
     }
 
     // Linear function. The return value is a when alpha = 0, b when alpha = 1, between a and b when 0 < alpha < 1.
     float linear(float a, float b, float alpha) {
-        return a * (1 - alpha) + b * alpha;
-    }
-
-    float exponential(float a, float b, float alpha, float exp) {
-        alpha = Mathf.Pow(alpha, exp);
         return a * (1 - alpha) + b * alpha;
     }
 }

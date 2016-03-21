@@ -5,7 +5,7 @@ public class MouseLook : MonoBehaviour {
     public float sensitivityX;
     public float sensitivityY;
     public float limitY;
-    public new Camera camera;
+    public new GameObject camera;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
     // Use this for initialization

@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour {
     public float walkingSpeed;
     public float runningSpeed;
     public float jumpStrenth;
-    public Camera camera;
     private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
@@ -29,7 +28,6 @@ public class Movement : MonoBehaviour {
             Vector3 movementVector = forwardVector + rightVector;
             movementVector.Normalize();
             if (movementVector.magnitude > 0) {
-                camera.GetComponent<Animator>().enabled = true;
                 rigidbody.velocity += movementVector * acceleration / Time.deltaTime;
                 float currentVelocity = Mathf.Sqrt(
                     rigidbody.velocity.x * rigidbody.velocity.x
@@ -41,9 +39,6 @@ public class Movement : MonoBehaviour {
                     currentVector.z = currentVector.z * maxSpeed / currentVelocity;
                     rigidbody.velocity = currentVector;
                 }
-            } else {
-                camera.GetComponent<Animator>().enabled = false;
-                camera.GetComponent<Animator>().SetTime(0);
             }
         }
 

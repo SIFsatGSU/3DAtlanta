@@ -49,6 +49,8 @@
      <Compile Include="Assets\Scripts\MenuControl.cs" />
      <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <None Include="Assets\Purchased Models\50-low-poly-trees-for-3ds-max-vray-license.txt" />
+     <None Include="Assets\Purchased Models\realtime-3d-buildings-pack-downtown-v1-license.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

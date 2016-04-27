@@ -37,6 +37,7 @@ ModelImporter:
     2300014: Mesh7_Model_002
     2300016: Mesh8_Model_002
     2300018: Mesh9_Model_002
+    2300020: //RootNode
     3300000: Mesh10_Model_003
     3300002: Mesh1_marquee_side_scallop_1_1_Model_002
     3300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -47,6 +48,7 @@ ModelImporter:
     3300014: Mesh7_Model_002
     3300016: Mesh8_Model_002
     3300018: Mesh9_Model_002
+    3300020: //RootNode
     4300000: Mesh6_marquee_side_scallop1_Model_002
     4300002: Mesh2_marquee_side_scallop_1_1_Model_002
     4300004: Mesh3_marquee_side_scallop_1_1_Model_002

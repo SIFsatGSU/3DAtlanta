@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(Light))]
 [RequireComponent(typeof(Animator))]
 public class DayTimeControl : MonoBehaviour {
+    public Material skybox;
     public float initialTime;
     public float timeFlowingRate; // Measured as (In game) Hours per (Real life) second
     // 0 <= sunRiseTime < noonTime < sunSetTime < 24
@@ -22,7 +23,7 @@ public class DayTimeControl : MonoBehaviour {
 
     private Animator animator;
     private Light sunLight;
-
+    private const float MAX_SKY_TINT = .7f;
     // To prevent the script from keeping looping while there's nothing to change
     private bool streetLightTurned = true;
 
@@ -53,6 +54,9 @@ public class DayTimeControl : MonoBehaviour {
 
         // Change the intensity of the ambient light according to the intensity of the sunlight.
         RenderSettings.ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
+
+        float skyTint = sunLight.intensity * MAX_SKY_TINT;
+        skybox.SetColor("_Tint", new Color(skyTint, skyTint, skyTint));
 
         // Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {

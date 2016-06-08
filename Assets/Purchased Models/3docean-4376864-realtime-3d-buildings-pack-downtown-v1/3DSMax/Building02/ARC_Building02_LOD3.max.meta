@@ -4,7 +4,25 @@ timeCreated: 1461736280
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ARC_Building02_LOD3
+    100004: Paving
+    100006: PROP_FireEsc2_Main01
+    400000: //RootNode
+    400002: ARC_Building02_LOD3
+    400004: Paving
+    400006: PROP_FireEsc2_Main01
+    2300000: ARC_Building02_LOD3
+    2300002: Paving
+    2300004: PROP_FireEsc2_Main01
+    3300000: ARC_Building02_LOD3
+    3300002: Paving
+    3300004: PROP_FireEsc2_Main01
+    4300000: ARC_Building02_LOD3
+    4300002: PROP_FireEsc2_Main01
+    4300004: Paving
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

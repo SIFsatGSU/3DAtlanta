@@ -4,7 +4,20 @@ timeCreated: 1461736206
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ARC_Building04_LOD1
+    100004: PROP_FireEsc3_Main01
+    400000: //RootNode
+    400002: ARC_Building04_LOD1
+    400004: PROP_FireEsc3_Main01
+    2300000: ARC_Building04_LOD1
+    2300002: PROP_FireEsc3_Main01
+    3300000: ARC_Building04_LOD1
+    3300002: PROP_FireEsc3_Main01
+    4300000: PROP_FireEsc3_Main01
+    4300002: ARC_Building04_LOD1
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

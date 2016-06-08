@@ -4,7 +4,20 @@ timeCreated: 1461736280
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ARC_Building04_LOD2
+    100004: FireEscapeLadder2_14
+    400000: //RootNode
+    400002: ARC_Building04_LOD2
+    400004: FireEscapeLadder2_14
+    2300000: ARC_Building04_LOD2
+    2300002: FireEscapeLadder2_14
+    3300000: ARC_Building04_LOD2
+    3300002: FireEscapeLadder2_14
+    4300000: FireEscapeLadder2_14
+    4300002: ARC_Building04_LOD2
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0

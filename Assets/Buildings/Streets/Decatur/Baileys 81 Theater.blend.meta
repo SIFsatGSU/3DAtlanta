@@ -23,6 +23,26 @@ ModelImporter:
     100030: Cylinder_003
     100032: Cylinder_004
     100034: Cylinder_005
+    100036: Cube_001
+    100038: Cube_002
+    100040: Cube_003
+    100042: Cube_004
+    100044: Cube_005
+    100046: Cube_006
+    100048: Cube_007
+    100050: Cube_008
+    100052: Cube_009
+    100054: Cube_010
+    100056: Cube_011
+    100058: Mesh1_marquee_side_scallop_1_1_Model_000
+    100060: Cylinder_006
+    100062: Cylinder_007
+    100064: Cylinder_008
+    100066: Cylinder_009
+    100068: Cylinder_010
+    100070: Cylinder_011
+    100072: Cylinder_012
+    100074: Cylinder_013
     400000: //RootNode
     400002: Mesh10_Model_003
     400004: Mesh1_marquee_side_scallop_1_1_Model_002
@@ -41,6 +61,26 @@ ModelImporter:
     400030: Cylinder_003
     400032: Cylinder_004
     400034: Cylinder_005
+    400036: Cube_001
+    400038: Cube_002
+    400040: Cube_003
+    400042: Cube_004
+    400044: Cube_005
+    400046: Cube_006
+    400048: Cube_007
+    400050: Cube_008
+    400052: Cube_009
+    400054: Cube_010
+    400056: Cube_011
+    400058: Mesh1_marquee_side_scallop_1_1_Model_000
+    400060: Cylinder_006
+    400062: Cylinder_007
+    400064: Cylinder_008
+    400066: Cylinder_009
+    400068: Cylinder_010
+    400070: Cylinder_011
+    400072: Cylinder_012
+    400074: Cylinder_013
     2300000: Mesh10_Model_003
     2300002: Mesh1_marquee_side_scallop_1_1_Model_002
     2300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -59,6 +99,26 @@ ModelImporter:
     2300030: Cylinder_003
     2300032: Cylinder_004
     2300034: Cylinder_005
+    2300036: Cube_001
+    2300038: Cube_002
+    2300040: Cube_003
+    2300042: Cube_004
+    2300044: Cube_005
+    2300046: Cube_006
+    2300048: Cube_007
+    2300050: Cube_008
+    2300052: Cube_009
+    2300054: Cube_010
+    2300056: Cube_011
+    2300058: Mesh1_marquee_side_scallop_1_1_Model_000
+    2300060: Cylinder_006
+    2300062: Cylinder_007
+    2300064: Cylinder_008
+    2300066: Cylinder_009
+    2300068: Cylinder_010
+    2300070: Cylinder_011
+    2300072: Cylinder_012
+    2300074: Cylinder_013
     3300000: Mesh10_Model_003
     3300002: Mesh1_marquee_side_scallop_1_1_Model_002
     3300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -77,6 +137,26 @@ ModelImporter:
     3300030: Cylinder_003
     3300032: Cylinder_004
     3300034: Cylinder_005
+    3300036: Cube_001
+    3300038: Cube_002
+    3300040: Cube_003
+    3300042: Cube_004
+    3300044: Cube_005
+    3300046: Cube_006
+    3300048: Cube_007
+    3300050: Cube_008
+    3300052: Cube_009
+    3300054: Cube_010
+    3300056: Cube_011
+    3300058: Mesh1_marquee_side_scallop_1_1_Model_000
+    3300060: Cylinder_006
+    3300062: Cylinder_007
+    3300064: Cylinder_008
+    3300066: Cylinder_009
+    3300068: Cylinder_010
+    3300070: Cylinder_011
+    3300072: Cylinder_012
+    3300074: Cylinder_013
     4300000: Mesh6_marquee_side_scallop1_Model_002
     4300002: Mesh2_marquee_side_scallop_1_1_Model_002
     4300004: Mesh3_marquee_side_scallop_1_1_Model_002
@@ -94,6 +174,26 @@ ModelImporter:
     4300028: Cylinder_002
     4300030: Cylinder_001
     4300032: Cylinder
+    4300034: Cube_011
+    4300036: Cube_010
+    4300038: Cube_009
+    4300040: Cube_008
+    4300042: Cube_007
+    4300044: Cube_006
+    4300046: Cube_005
+    4300048: Cube_004
+    4300050: Cube_003
+    4300052: Cube_002
+    4300054: Cube_001
+    4300056: Mesh1_marquee_side_scallop_1_1_Model_000
+    4300058: Cylinder_013
+    4300060: Cylinder_012
+    4300062: Cylinder_011
+    4300064: Cylinder_010
+    4300066: Cylinder_009
+    4300068: Cylinder_008
+    4300070: Cylinder_007
+    4300072: Cylinder_006
     7400000: Default Take
     9500000: //RootNode
   materials:

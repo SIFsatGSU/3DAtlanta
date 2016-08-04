@@ -55,7 +55,7 @@ public class DayTimeControl : MonoBehaviour {
         // Change the intensity of the ambient light according to the intensity of the sunlight.
         RenderSettings.ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
         // Change the fog color based on the intensity of the sunlight.
-        RenderSettings.fogColor = new Color(sunLight.intensity, sunLight.intensity, sunLight.intensity);
+        RenderSettings.fogColor = new Color(sunLight.intensity * .8f, sunLight.intensity * .8f, sunLight.intensity * .8f);
 
         float skyTint = sunLight.intensity * MAX_SKY_TINT;
         skybox.SetColor("_Tint", new Color(skyTint, skyTint, skyTint));

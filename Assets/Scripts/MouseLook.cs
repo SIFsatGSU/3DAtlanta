@@ -14,12 +14,14 @@ public class MouseLook : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        float mouseX = Input.GetAxisRaw("Mouse X");
-        float mouseY = Input.GetAxisRaw("Mouse Y");
+        if (Time.timeScale > 0) {
+            float mouseX = Input.GetAxisRaw("Mouse X");
+            float mouseY = Input.GetAxisRaw("Mouse Y");
 
-        transform.Rotate(0, sensitivityX * mouseX, 0);
-        rotationY += mouseY * sensitivityY;
-        rotationY = Mathf.Clamp(rotationY, -limitY / 2, limitY / 2);
-        camera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+            transform.Rotate(0, sensitivityX * mouseX, 0);
+            rotationY += mouseY * sensitivityY;
+            rotationY = Mathf.Clamp(rotationY, -limitY / 2, limitY / 2);
+            camera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+        }
     }
 }

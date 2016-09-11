@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour {
     public float walkingSpeed;
     public float runningSpeed;
     public float jumpStrenth;
-    public Camera camera;
+    public GameObject camera;
     private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
@@ -32,7 +32,6 @@ public class Movement : MonoBehaviour {
                 if (horizontalMovement == 0 && verticalMovement == 0) gamepadRunMode = false;
                 // Unified run mode taking input from both keyboard and gamepad.
                 bool runMode = Input.GetAxisRaw("Run") > 0 || gamepadRunMode;
-
                 Vector3 movementVector = forwardVector + rightVector;
                 movementVector.Normalize();
                 if (movementVector.magnitude > 0) {

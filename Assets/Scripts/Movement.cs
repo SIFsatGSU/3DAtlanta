@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour {
     private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
+    private bool gamepadRunMode;
 
 	// Use this for initialization
 	void Start () {
@@ -22,10 +23,15 @@ public class Movement : MonoBehaviour {
         if (Time.timeScale > 0) {
             // Movement input
             if (jumpable) { // Player also needs to be grounded to move
+                if (Input.GetAxisRaw("Run Gamepad") > 0) gamepadRunMode = true;
                 float verticalMovement = Input.GetAxisRaw("Vertical");
                 Vector3 forwardVector = transform.forward * verticalMovement;
                 float horizontalMovement = Input.GetAxisRaw("Horizontal");
                 Vector3 rightVector = transform.right * horizontalMovement;
+                // If there's no movement input then stop gamepad running.
+                if (horizontalMovement == 0 && verticalMovement == 0) gamepadRunMode = false;
+                // Unified run mode taking input from both keyboard and gamepad.
+                bool runMode = Input.GetAxisRaw("Run") > 0 || gamepadRunMode;
 
                 Vector3 movementVector = forwardVector + rightVector;
                 movementVector.Normalize();
@@ -35,7 +41,7 @@ public class Movement : MonoBehaviour {
                     float currentVelocity = Mathf.Sqrt(
                         rigidbody.velocity.x * rigidbody.velocity.x
                         + rigidbody.velocity.z * rigidbody.velocity.z);
-                    float maxSpeed = (Input.GetAxisRaw("Run") > 0) ? runningSpeed : walkingSpeed;
+                    float maxSpeed = runMode ? runningSpeed : walkingSpeed;
                     if (currentVelocity > maxSpeed) {
                         Vector3 currentVector = rigidbody.velocity;
                         currentVector.x = currentVector.x * maxSpeed / currentVelocity;

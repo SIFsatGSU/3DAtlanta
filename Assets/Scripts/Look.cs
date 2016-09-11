@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MouseLook : MonoBehaviour {
+public class Look : MonoBehaviour {
     public float sensitivityX;
     public float sensitivityY;
     public float limitY;
@@ -15,8 +15,8 @@ public class MouseLook : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Time.timeScale > 0) {
-            float mouseX = Input.GetAxisRaw("Mouse X");
-            float mouseY = Input.GetAxisRaw("Mouse Y");
+            float mouseX = Input.GetAxisRaw("Mouse X") + Input.GetAxisRaw("Look X");
+            float mouseY = Input.GetAxisRaw("Mouse Y") + Input.GetAxisRaw("Look Y");
 
             transform.Rotate(0, sensitivityX * mouseX, 0);
             rotationY += mouseY * sensitivityY;

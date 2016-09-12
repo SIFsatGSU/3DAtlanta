@@ -8,6 +8,7 @@ public class Look : MonoBehaviour {
     public new GameObject camera;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
+	private bool VRMode;
     // Use this for initialization
     void Start () {
     }

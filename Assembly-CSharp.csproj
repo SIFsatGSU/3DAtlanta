@@ -48,7 +48,6 @@
      <Compile Include="Assets\Scripts\DayTimeControl.cs" />
      <Compile Include="Assets\Scripts\Look.cs" />
      <Compile Include="Assets\Scripts\MenuControl.cs" />
-     <Compile Include="Assets\Scripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
      <None Include="Assets\Purchased Models\50-low-poly-trees-for-3ds-max-vray-license.txt" />
      <None Include="Assets\Tessellation.shader" />

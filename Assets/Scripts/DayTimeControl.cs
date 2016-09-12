@@ -5,7 +5,6 @@
 
 using UnityEngine;
 
-[RequireComponent(typeof(Light))]
 [RequireComponent(typeof(Animator))]
 public class DayTimeControl : MonoBehaviour {
     public Material skybox;
@@ -20,16 +19,15 @@ public class DayTimeControl : MonoBehaviour {
     public float streetLightOffTime;
     public float sunlightToAmbientCoefficient;
     public float currentTime;
+    public Light sunLight;
 
     private Animator animator;
-    private Light sunLight;
     private const float MAX_SKY_TINT = .7f;
     // To prevent the script from keeping looping while there's nothing to change
     private bool streetLightTurned = true;
 
     // Use this for initialization
 	void Start () {
-        sunLight = GetComponent<Light>();
         animator = GetComponent<Animator>();
         currentTime = initialTime;
     }

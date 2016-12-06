@@ -50,8 +50,11 @@ public class DayTimeControl : MonoBehaviour {
             animator.SetTime(linear(.25f, .5f, alpha));
         }
 
+		GetComponentInChildren<LensFlare> ().brightness = sunLight.intensity / 5;
+		GetComponentInChildren<LensFlare> ().color = sunLight.color;
         // Change the intensity of the ambient light according to the intensity of the sunlight.
-        RenderSettings.ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
+		float ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
+		RenderSettings.ambientLight = sunLight.color * ambientIntensity;
         // Change the fog color based on the intensity of the sunlight.
         RenderSettings.fogColor = new Color(sunLight.intensity * .8f, sunLight.intensity * .8f, sunLight.intensity * .8f);
 

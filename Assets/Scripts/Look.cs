@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.VR;
 using System.Collections;
 
 public class Look : MonoBehaviour {
@@ -8,7 +9,7 @@ public class Look : MonoBehaviour {
     public new GameObject camera;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
-	private bool VRMode;
+	private float yEnable = 1;
     // Use this for initialization
     void Start () {
     }
@@ -16,9 +17,15 @@ public class Look : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         if (Time.timeScale > 0) {
+			
+			if (VRDevice.isPresent) {
+				yEnable = 0;
+			} else {
+				yEnable = 1;
+			}
             float deltaX = Input.GetAxisRaw("Mouse X") + Input.GetAxisRaw("Look X");
             float deltaY = Input.GetAxisRaw("Mouse Y") + Input.GetAxisRaw("Look Y");
-
+			deltaY *= yEnable;
 			transform.Rotate(0, sensitivityX * deltaX, 0);
 			rotationY += deltaY * sensitivityY;
             rotationY = Mathf.Clamp(rotationY, -limitY / 2, limitY / 2);

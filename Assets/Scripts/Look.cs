@@ -18,6 +18,18 @@ public class Look : MonoBehaviour {
     void Update () {
         if (Time.timeScale > 0) {
 			
+			// Ray cast
+			Ray forwardRay;
+			if (VRDevice.isPresent) {
+				Vector3 forward = InputTracking.GetLocalRotation(VRNode.Head) * new Vector3(0, 0, 1);
+				forward = transform.rotation * forward;
+				forwardRay = new Ray(camera.transform.position, forward);
+			} else {
+				forwardRay = new Ray(camera.transform.position, camera.transform.forward);
+			}
+			
+			GetComponent<Movement>().forwardVector = new Vector3(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
+			
 			if (VRDevice.isPresent) {
 				yEnable = 0;
 			} else {

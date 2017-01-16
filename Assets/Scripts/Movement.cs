@@ -8,7 +8,8 @@ public class Movement : MonoBehaviour {
     public float runningSpeed;
     public float jumpStrenth;
     public GameObject camera;
-    private new Rigidbody rigidbody;
+	public Vector3 forwardVector;
+	private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
     private bool gamepadRunMode;
@@ -24,15 +25,20 @@ public class Movement : MonoBehaviour {
             // Movement input
             if (jumpable) { // Player also needs to be grounded to move
                 if (Input.GetAxisRaw("Run Gamepad") > 0) gamepadRunMode = true;
-                float verticalMovement = Input.GetAxisRaw("Vertical");
-                Vector3 forwardVector = transform.forward * verticalMovement;
-                float horizontalMovement = Input.GetAxisRaw("Horizontal");
-                Vector3 rightVector = transform.right * horizontalMovement;
+				Vector3 rightVector = Vector3.Cross (transform.up, forwardVector);
+
+				float verticalMovement = Input.GetAxisRaw("Vertical");
+				Vector3 forwardMovement = forwardVector * verticalMovement;
+                
+				float horizontalMovement = Input.GetAxisRaw("Horizontal");
+				Vector3 rightMovement = rightVector * horizontalMovement;
+
                 // If there's no movement input then stop gamepad running.
                 if (horizontalMovement == 0 && verticalMovement == 0) gamepadRunMode = false;
+
                 // Unified run mode taking input from both keyboard and gamepad.
                 bool runMode = Input.GetAxisRaw("Run") > 0 || gamepadRunMode;
-                Vector3 movementVector = forwardVector + rightVector;
+				Vector3 movementVector = forwardMovement + rightMovement;
                 movementVector.Normalize();
                 if (movementVector.magnitude > 0) {
                     camera.GetComponent<Animator>().enabled = true;

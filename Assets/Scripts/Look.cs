@@ -29,7 +29,12 @@ public class Look : MonoBehaviour {
 			}
 			
 			GetComponent<Movement>().forwardVector = new Vector3(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
-			
+
+			RaycastHit hit;
+			if (Physics.Raycast (forwardRay, out hit)) {
+				GetComponentInChildren<UnityStandardAssets.ImageEffects.DepthOfField> ().focalTransform.position = hit.point;
+			}
+
 			if (VRDevice.isPresent) {
 				yEnable = 0;
 			} else {

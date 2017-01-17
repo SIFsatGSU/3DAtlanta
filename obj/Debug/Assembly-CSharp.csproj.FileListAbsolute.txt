@@ -40,3 +40,12 @@ F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.Networking.xm
 F:\Users\Jack\OneDrive\Github\3DAtlanta\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 F:\Users\Jack\OneDrive\Github\3DAtlanta\obj\Debug\Assembly-CSharp.dll
 F:\Users\Jack\OneDrive\Github\3DAtlanta\obj\Debug\Assembly-CSharp.pdb
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.Analytics.dll
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.HoloLens.dll
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.dll
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.VR.dll
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\Assembly-CSharp-firstpass.pdb
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.PlaymodeTestsRunner.xml
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.Analytics.xml
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.HoloLens.xml
+F:\Users\Jack\OneDrive\Github\3DAtlanta\Temp\bin\Debug\UnityEngine.VR.xml

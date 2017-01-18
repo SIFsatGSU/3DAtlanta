@@ -5,6 +5,7 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.ImageEffects;
 
 [RequireComponent(typeof(Animator))]
 public class DayTimeControl : MonoBehaviour {
@@ -12,6 +13,7 @@ public class DayTimeControl : MonoBehaviour {
 	public GameObject timeTextBox;
 	public GameObject mainCamera;
 	public GameObject sunMoonContainer;
+    public Tonemapping cameraTonemapping; // To turn off at night.
 
 	// 0 <= sunRiseTime < noonTime < sunSetTime < 24
     public float sunRiseTime;
@@ -45,28 +47,31 @@ public class DayTimeControl : MonoBehaviour {
 		timeTextBox.GetComponent<Text> ().text = (int)(currentTime) + ":" + (int)(currentTime % 1 * 60);
 
         float alpha;
-		if (currentTime < sunRiseTime) { // When time is between sunrise and noon.
+		if (currentTime < sunRiseTime) {
 			// Animate until sunrise
 			alpha = (currentTime + 24 - sunSetTime) / (24 + sunRiseTime - sunSetTime);
 			animator.SetTime (linear (.5f, 1, alpha));
-		} else if (currentTime < noonTime) { // When time is between sunrise and noon.
+            cameraTonemapping.enabled = false;
+        } else if (currentTime < noonTime) { // When time is between sunrise and noon.
 			alpha = (currentTime - sunRiseTime) / (noonTime - sunRiseTime);
 			// When currentTime = sunRiseTime, the animation time is 0.
 			// When currentTime = noonTime, the animation time is .25 (where we set the sun at 90 degrees).
 			animator.SetTime (linear (0, .25f, alpha));
-		} else if (currentTime < sunSetTime) {
+        }
+        else if (currentTime < sunSetTime) {
 			alpha = (currentTime - noonTime) / (sunSetTime - noonTime);
 			// When currentTime = noonTime, the animation time is .25.
 			// When currentTime = sunSetTime, the animation time is .5 (where the sun sets).
 			animator.SetTime (linear (.25f, .5f, alpha));
-		} else {
+        }
+        else {
 			// Animate until sunrise. In conjunction with the top case.
 			alpha = (currentTime - sunSetTime) / (24 + sunRiseTime - sunSetTime);
 			animator.SetTime (linear (.5f, 1, alpha));
-		}
+        }
 
         // Change the intensity of the ambient light according to the intensity of the sunlight.
-		float ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
+        float ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
 		RenderSettings.ambientLight = sunLight.color * ambientIntensity;
         // Change the fog color based on the intensity of the sunlight.
 		//RenderSettings.fogColor = new Color(sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio);
@@ -75,12 +80,15 @@ public class DayTimeControl : MonoBehaviour {
 		// Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {
             turnStreetLight(true);
-        } else {
+            cameraTonemapping.enabled = false;
+        }
+        else {
             turnStreetLight(false);
+            cameraTonemapping.enabled = true;
         }
 
-		// To keep sun at the same place for player.
-		sunMoonContainer.transform.position = mainCamera.transform.position;
+        // To keep sun at the same place for player.
+        sunMoonContainer.transform.position = mainCamera.transform.position;
     }
 
     void turnStreetLight(bool turn) {

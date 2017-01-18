@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.VR;
 using System.Collections;
+using UnityStandardAssets.ImageEffects;
 
 public class Look : MonoBehaviour {
     public float sensitivityX;
@@ -12,6 +13,7 @@ public class Look : MonoBehaviour {
 	private float yEnable = 1;
     // Use this for initialization
     void Start () {
+		Cursor.visible = false;
     }
 
     // Update is called once per frame
@@ -31,8 +33,12 @@ public class Look : MonoBehaviour {
 			GetComponent<Movement>().forwardVector = new Vector3(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
 
 			RaycastHit hit;
+			DepthOfField depthOfField = GetComponentInChildren<DepthOfField> ();
 			if (Physics.Raycast (forwardRay, out hit)) {
-				GetComponentInChildren<UnityStandardAssets.ImageEffects.DepthOfField> ().focalTransform.position = hit.point;
+				depthOfField.enabled = true;
+				depthOfField.focalLength = hit.distance;
+			} else {
+				depthOfField.enabled = false;
 			}
 
 			if (VRDevice.isPresent) {

@@ -65,15 +65,14 @@ public class DayTimeControl : MonoBehaviour {
 			animator.SetTime (linear (.5f, 1, alpha));
 		}
 
-		GetComponentInChildren<LensFlare> ().brightness = sunLight.intensity / 5;
-		GetComponentInChildren<LensFlare> ().color = sunLight.color;
         // Change the intensity of the ambient light according to the intensity of the sunlight.
 		float ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
 		RenderSettings.ambientLight = sunLight.color * ambientIntensity;
         // Change the fog color based on the intensity of the sunlight.
-		RenderSettings.fogColor = new Color(sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio);
+		//RenderSettings.fogColor = new Color(sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio);
+		RenderSettings.fogColor = sunLight.color * sunLight.intensity;
 
-        // Turn the street light on or off
+		// Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {
             turnStreetLight(true);
         } else {

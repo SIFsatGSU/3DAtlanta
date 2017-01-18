@@ -1,13 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MenuControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\DayTimeControl.cs">
     <Files>
-      <File FileName="Assets\Scripts\Look.cs" Line="12" Column="1" />
+      <File FileName="Assets\Scripts\Look.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\MainController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\DayTimeControl.cs" Line="71" Column="77" />
+      <File FileName="Assets\Scripts\DayTimeControl.cs" Line="68" Column="1" />
       <File FileName="Assets\Materials\Clouds.shader" Line="1" Column="1" />
-      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" Line="4" Column="43" />
-      <File FileName="Assets\Scripts\MenuControl.cs" Line="21" Column="17" />
+      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Scripts\Bloom.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\MenuControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Effects\ImageEffects\Scripts\DepthOfField.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

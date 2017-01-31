@@ -88,6 +88,7 @@
     <Compile Include="Assets\Scripts\MainController.cs" />
     <Compile Include="Assets\Scripts\MenuControl.cs" />
     <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\ReplaceSelection.cs" />
     <Compile Include="Assets\Scripts\SetCameraPosAndZoom.cs" />
   </ItemGroup>
   <ItemGroup>

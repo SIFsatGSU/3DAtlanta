@@ -7,6 +7,7 @@ public class Look : MonoBehaviour {
     public float sensitivityX;
     public float sensitivityY;
     public float limitY;
+	public float depthOfFieldSpeed;
     public new GameObject camera;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
@@ -36,7 +37,8 @@ public class Look : MonoBehaviour {
 			DepthOfField depthOfField = GetComponentInChildren<DepthOfField> ();
 			if (Physics.Raycast (forwardRay, out hit)) {
 				depthOfField.enabled = true;
-				depthOfField.focalLength = hit.distance;
+				depthOfField.focalLength += depthOfFieldSpeed *
+					(hit.distance - depthOfField.focalLength);
 			} else {
 				depthOfField.enabled = false;
 			}

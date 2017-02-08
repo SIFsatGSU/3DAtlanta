@@ -1,11 +1,11 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{18D36A20-69E5-9885-00E5-D9D07350D09C}") = "3DAtlanta", "Assembly-CSharp-firstpass.csproj", "{315BB41F-D84A-528A-56E9-FE39E3F91B53}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DAtlanta", "Assembly-CSharp-firstpass.csproj", "{315BB41F-D84A-528A-56E9-FE39E3F91B53}"
 EndProject
-Project("{18D36A20-69E5-9885-00E5-D9D07350D09C}") = "3DAtlanta", "Assembly-CSharp.csproj", "{0B764747-B6F0-373B-0967-01A2761AC595}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DAtlanta", "Assembly-CSharp.csproj", "{0B764747-B6F0-373B-0967-01A2761AC595}"
 EndProject
-Project("{18D36A20-69E5-9885-00E5-D9D07350D09C}") = "3DAtlanta", "Assembly-CSharp-Editor.csproj", "{F1D04EB2-D6AA-B9A5-E40F-1E9E56948443}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3DAtlanta", "Assembly-CSharp-Editor.csproj", "{F1D04EB2-D6AA-B9A5-E40F-1E9E56948443}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

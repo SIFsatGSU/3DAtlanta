@@ -4,7 +4,9 @@
  * 'keep parent' added by Dave A (also removed 'rotation' option, using localRotation
  */
 using UnityEngine;
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 using System.Collections;
 
 public class ReplaceSelection : ScriptableWizard {

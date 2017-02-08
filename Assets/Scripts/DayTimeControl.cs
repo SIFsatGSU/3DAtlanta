@@ -22,11 +22,15 @@ public class DayTimeControl : MonoBehaviour {
 
     public float streetLightOnTime;
     public float streetLightOffTime;
-    public float sunlightToAmbientCoefficient;
+    public float sunLightToAmbientCoefficient;
+    public float moonLightToAmbientCoefficient;
     public float currentTime;
     public Light sunLight;
-	public float sunToFogRatio;
+    public Light moonLight;
+    public float sunToFogRatio;
+    public float importantLightRadius;
 
+    private GameObject[] streetLights; // For use in turning on/off and importance setting functions
     private Animator animator;
     // To prevent the script from keeping looping while there's nothing to change
     private bool streetLightTurned = true;
@@ -34,6 +38,7 @@ public class DayTimeControl : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+        streetLights = GameObject.FindGameObjectsWithTag("Street Light");
     }
 	
 	// Update is called once per frame
@@ -70,9 +75,14 @@ public class DayTimeControl : MonoBehaviour {
 			animator.SetTime (linear (.5f, 1, alpha));
         }
 
-        // Change the intensity of the ambient light according to the intensity of the sunlight.
-        float ambientIntensity = sunLight.intensity * sunlightToAmbientCoefficient;
-		RenderSettings.ambientLight = sunLight.color * ambientIntensity;
+        // Change the intensity of the ambient light according to the intensity of the sunlight or moonlight.
+        if (currentTime >= sunRiseTime && currentTime <= sunSetTime) {
+            float ambientIntensity = sunLight.intensity * sunLightToAmbientCoefficient;
+            RenderSettings.ambientLight = sunLight.color * ambientIntensity;
+        } else {
+            float ambientIntensity = moonLight.intensity * moonLightToAmbientCoefficient;
+            RenderSettings.ambientLight = moonLight.color * ambientIntensity;
+        }
         // Change the fog color based on the intensity of the sunlight.
 		//RenderSettings.fogColor = new Color(sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio);
 		RenderSettings.fogColor = sunLight.color * sunLight.intensity;
@@ -87,15 +97,29 @@ public class DayTimeControl : MonoBehaviour {
             cameraTonemapping.enabled = true;
         }
 
+        changeStreetLightImportance();
+
         // To keep sun at the same place for player.
         sunMoonContainer.transform.position = mainCamera.transform.position;
+    }
+
+    // Called to change street lights' importance to save on performance.
+    void changeStreetLightImportance() {
+        if (streetLightTurned) { // When street lights are on.
+            foreach (GameObject light in streetLights) {
+                if ((light.transform.position - mainCamera.transform.position).sqrMagnitude < importantLightRadius * importantLightRadius) {
+                    ((Light)light.GetComponent(typeof(Light))).renderMode = LightRenderMode.ForcePixel;
+                } else {
+                    ((Light)light.GetComponent(typeof(Light))).renderMode = LightRenderMode.ForceVertex;
+                }
+            }
+        }
     }
 
     void turnStreetLight(bool turn) {
         if (streetLightTurned != turn) { // Only execute when there's a change
             streetLightTurned = turn;
-            GameObject[] streetLight = GameObject.FindGameObjectsWithTag("Street Light");
-            foreach (GameObject light in streetLight) {
+            foreach (GameObject light in streetLights) {
                 ((Light) light.GetComponent(typeof(Light))).enabled = turn;
             }
         }

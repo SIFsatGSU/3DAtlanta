@@ -56,7 +56,7 @@ public class Movement : MonoBehaviour {
                 }
                 else {
                     camera.GetComponent<Animator>().enabled = false;
-                    camera.GetComponent<Animator>().SetTime(0);
+					camera.GetComponent<Animator>().Play("Camera bobbing", 0, 0);
                 }
             }
 

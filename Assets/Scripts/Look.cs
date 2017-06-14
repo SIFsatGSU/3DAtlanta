@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.VR;
+using UnityEngine.PostProcessing;
 using System.Collections;
-using UnityStandardAssets.ImageEffects;
 
 public class Look : MonoBehaviour {
     public float sensitivityX;
@@ -12,9 +12,12 @@ public class Look : MonoBehaviour {
     private new Rigidbody rigidbody;
     private float rotationY = 0;
 	private float yEnable = 1;
+	private PostProcessingProfile cameraProfile;
     // Use this for initialization
     void Start () {
 		Cursor.visible = false;
+		cameraProfile = camera.GetComponentInChildren<PostProcessingBehaviour> ().profile;
+		print (cameraProfile);
     }
 
     // Update is called once per frame
@@ -33,15 +36,17 @@ public class Look : MonoBehaviour {
 			
 			GetComponent<Movement>().forwardVector = new Vector3(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
 
-			RaycastHit hit;
-			DepthOfField depthOfField = GetComponentInChildren<DepthOfField> ();
+			/*RaycastHit hit;
+
+			DepthOfFieldModel.Settings settings = cameraProfile.depthOfField.settings;
 			if (Physics.Raycast (forwardRay, out hit)) {
-				depthOfField.enabled = true;
-				depthOfField.focalLength += depthOfFieldSpeed *
-					(hit.distance - depthOfField.focalLength);
+				cameraProfile.depthOfField.enabled = true;
+				settings.focusDistance += depthOfFieldSpeed *
+					(hit.distance - settings.focusDistance);
+				cameraProfile.depthOfField.settings = settings;
 			} else {
-				depthOfField.enabled = false;
-			}
+				cameraProfile.depthOfField.enabled = false;
+			}*/
 
 			if (VRDevice.isPresent) {
 				yEnable = 0;

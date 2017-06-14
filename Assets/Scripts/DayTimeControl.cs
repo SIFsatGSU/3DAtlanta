@@ -5,15 +5,14 @@
 
 using UnityEngine;
 using UnityEngine.UI;
-using UnityStandardAssets.ImageEffects;
+using UnityEngine.PostProcessing;
 
-[RequireComponent(typeof(Animator))]
 public class DayTimeControl : MonoBehaviour {
     public float timeFlowingRate; // Measured as (In game) Hours per (Real life) second
 	public GameObject timeTextBox;
 	public GameObject mainCamera;
 	public GameObject sunMoonContainer;
-    public Tonemapping cameraTonemapping; // To turn off at night.
+    //public Tonemapping cameraTonemapping; // To turn off at night.
 
 	// 0 <= sunRiseTime < noonTime < sunSetTime < 24
     public float sunRiseTime;
@@ -31,14 +30,16 @@ public class DayTimeControl : MonoBehaviour {
     public float importantLightRadius;
 
     private GameObject[] streetLights; // For use in turning on/off and importance setting functions
-    private Animator animator;
+    private Animator dayTimeAnimator;
     // To prevent the script from keeping looping while there's nothing to change
     private bool streetLightTurned = true;
+	private PostProcessingProfile cameraProfile;
 
     // Use this for initialization
 	void Start () {
-        animator = GetComponent<Animator>();
+        dayTimeAnimator = GetComponent<Animator>();
         streetLights = GameObject.FindGameObjectsWithTag("Street Light");
+		cameraProfile = mainCamera.GetComponent<PostProcessingBehaviour> ().profile;
     }
 	
 	// Update is called once per frame
@@ -55,24 +56,25 @@ public class DayTimeControl : MonoBehaviour {
 		if (currentTime < sunRiseTime) {
 			// Animate until sunrise
 			alpha = (currentTime + 24 - sunSetTime) / (24 + sunRiseTime - sunSetTime);
-			animator.SetTime (linear (.5f, 1, alpha));
-            cameraTonemapping.enabled = false;
+			dayTimeAnimator.Play("Daytime", 0, linear (.5f, 1, alpha));
+            //cameraTonemapping.enabled = false;
+			cameraProfile.eyeAdaptation.enabled = false;
         } else if (currentTime < noonTime) { // When time is between sunrise and noon.
 			alpha = (currentTime - sunRiseTime) / (noonTime - sunRiseTime);
 			// When currentTime = sunRiseTime, the animation time is 0.
 			// When currentTime = noonTime, the animation time is .25 (where we set the sun at 90 degrees).
-			animator.SetTime (linear (0, .25f, alpha));
+			dayTimeAnimator.Play("Daytime", 0, linear (0, .25f, alpha));
         }
         else if (currentTime < sunSetTime) {
 			alpha = (currentTime - noonTime) / (sunSetTime - noonTime);
 			// When currentTime = noonTime, the animation time is .25.
 			// When currentTime = sunSetTime, the animation time is .5 (where the sun sets).
-			animator.SetTime (linear (.25f, .5f, alpha));
+			dayTimeAnimator.Play("Daytime", 0, linear (.25f, .5f, alpha));
         }
         else {
 			// Animate until sunrise. In conjunction with the top case.
 			alpha = (currentTime - sunSetTime) / (24 + sunRiseTime - sunSetTime);
-			animator.SetTime (linear (.5f, 1, alpha));
+			dayTimeAnimator.Play("Daytime", 0, linear (.5f, 1, alpha));
         }
 
         // Change the intensity of the ambient light according to the intensity of the sunlight or moonlight.
@@ -90,11 +92,13 @@ public class DayTimeControl : MonoBehaviour {
 		// Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {
             turnStreetLight(true);
-            cameraTonemapping.enabled = false;
+            //cameraTonemapping.enabled = false;
+			cameraProfile.eyeAdaptation.enabled = false;
         }
         else {
             turnStreetLight(false);
-            cameraTonemapping.enabled = true;
+            //cameraTonemapping.enabled = true;
+			cameraProfile.eyeAdaptation.enabled = true;
         }
 
         changeStreetLightImportance();

@@ -4,7 +4,25 @@ timeCreated: 1461736730
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ARC_Building01_LOD3
+    100004: Paving
+    100006: PROP_FireEscape1_00
+    400000: //RootNode
+    400002: ARC_Building01_LOD3
+    400004: Paving
+    400006: PROP_FireEscape1_00
+    2300000: ARC_Building01_LOD3
+    2300002: Paving
+    2300004: PROP_FireEscape1_00
+    3300000: ARC_Building01_LOD3
+    3300002: Paving
+    3300004: PROP_FireEscape1_00
+    4300000: ARC_Building01_LOD3
+    4300002: Paving
+    4300004: PROP_FireEscape1_00
+    9500000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -12,9 +30,11 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -51,6 +71,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -61,7 +82,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

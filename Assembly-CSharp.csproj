@@ -91,13 +91,18 @@
      <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+     <Compile Include="Assets\ProbeInterval.cs" />
      <Compile Include="Assets\Scripts\CameraDragMoveZoom.cs" />
+     <Compile Include="Assets\Scripts\ChronolenseArea.cs" />
+     <Compile Include="Assets\Scripts\ChronolenseController.cs" />
      <Compile Include="Assets\Scripts\DayTimeControl.cs" />
      <Compile Include="Assets\Scripts\DimLenseFlare.cs" />
+     <Compile Include="Assets\Scripts\Locations.cs" />
      <Compile Include="Assets\Scripts\Look.cs" />
      <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Scripts\MenuControl.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <Compile Include="Assets\Scripts\ReferencePoint.cs" />
      <Compile Include="Assets\Scripts\SetCameraPosAndZoom.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_BloomAndFlares\BlendOneOne.shader" />
@@ -136,6 +141,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
+     <None Include="Assets\Shaders\Chronolense.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\Tessellation.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />
@@ -220,9 +226,6 @@
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
- </Reference>
- <Reference Include="nunit.framework">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>

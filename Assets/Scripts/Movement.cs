@@ -8,15 +8,17 @@ public class Movement : MonoBehaviour {
     public float runningSpeed;
     public float jumpStrenth;
     public GameObject camera;
+	public float cameraReturnRate;
 	public Vector3 forwardVector;
 	private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
     private bool gamepadRunMode;
-
+	private Animator headBobbingAnimator;
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
+		headBobbingAnimator = camera.GetComponent<Animator> ();
     }
 	
 	// Update is called once per frame
@@ -41,7 +43,7 @@ public class Movement : MonoBehaviour {
 				Vector3 movementVector = forwardMovement + rightMovement;
                 movementVector.Normalize();
                 if (movementVector.magnitude > 0) {
-                    camera.GetComponent<Animator>().enabled = true;
+					headBobbingAnimator.enabled = true;
                     rigidbody.velocity += movementVector * acceleration / Time.deltaTime;
                     float currentVelocity = Mathf.Sqrt(
                         rigidbody.velocity.x * rigidbody.velocity.x
@@ -53,13 +55,15 @@ public class Movement : MonoBehaviour {
                         currentVector.z = currentVector.z * maxSpeed / currentVelocity;
                         rigidbody.velocity = currentVector;
                     }
-                }
-                else {
-                    camera.GetComponent<Animator>().enabled = false;
-					camera.GetComponent<Animator>().Play("Camera bobbing", 0, 0);
+                } else {
+					float currentTime = headBobbingAnimator.GetCurrentAnimatorStateInfo (0).normalizedTime % 1;
+					camera.transform.localPosition *= cameraReturnRate;
+					headBobbingAnimator.enabled = false;
+					headBobbingAnimator.Play ("Camera bobbing", 0, 0);
                 }
             }
 
+			//print (headBobbingAnimator.GetCurrentAnimatorStateInfo (0).normalizedTime % 1);
             if (Input.GetAxisRaw("Jump") > 0 && jumpable) {
                 rigidbody.AddForce(transform.up * jumpStrenth);
                 jumpable = false;
@@ -72,6 +76,9 @@ public class Movement : MonoBehaviour {
                     jumpable = true;
                 }
             }
+
+			/*Vector3 latLng = Locations.PositionToLatLng (transform.position);
+			print (latLng.x + ", " + latLng.z);*/
         } else {
             camera.GetComponent<Animator>().enabled = false;
         }
@@ -82,4 +89,16 @@ public class Movement : MonoBehaviour {
             jumpable = true;
         }
     }
+
+	void OnTriggerEnter(Collider col) {
+		if (col.gameObject.tag == "Chronolense Area") {
+			GetComponent<ChronolenseController> ().AreaEnter (col.gameObject.GetComponent<ChronolenseArea> ());
+		}
+	}
+
+	void OnTriggerExit(Collider col) {
+		if (col.gameObject.tag == "Chronolense Area") {
+			GetComponent<ChronolenseController> ().AreaExit ();
+		}
+	}
 }

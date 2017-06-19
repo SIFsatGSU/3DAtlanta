@@ -15,7 +15,6 @@ public class Look : MonoBehaviour {
 	private PostProcessingProfile cameraProfile;
     // Use this for initialization
     void Start () {
-		Cursor.visible = false;
 		cameraProfile = camera.GetComponentInChildren<PostProcessingBehaviour> ().profile;
 		print (cameraProfile);
     }

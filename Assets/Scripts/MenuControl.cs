@@ -5,8 +5,10 @@ public class MenuControl : MonoBehaviour {
     public GameObject pnlMenu;
     private bool paused = false;
     private bool keyPressed = false;
-    // Use this for initialization
+    
+	// Hide cursor and menu on startup.
     void Start() {
+		Cursor.visible = false;
         pnlMenu.SetActive(false);
     }
 
@@ -27,10 +29,12 @@ public class MenuControl : MonoBehaviour {
         if (paused) {
             Time.timeScale = 0;
             pnlMenu.SetActive(true);
+			Cursor.visible = true;
         }
         else {
             Time.timeScale = 1;
             pnlMenu.SetActive(false);
+			Cursor.visible = false;
         }
     }
 

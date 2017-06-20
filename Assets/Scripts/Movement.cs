@@ -10,6 +10,10 @@ public class Movement : MonoBehaviour {
     public GameObject camera;
 	public float cameraReturnRate;
 	public Vector3 forwardVector;
+	public AudioSource walkingAudio;
+	public AudioSource runningAudio;
+	public AudioSource jumpAudio;
+	public AudioSource landAudio;
 	private new Rigidbody rigidbody;
     private bool jumpable = true;
     private float groundTime = 0;
@@ -55,11 +59,18 @@ public class Movement : MonoBehaviour {
                         currentVector.z = currentVector.z * maxSpeed / currentVelocity;
                         rigidbody.velocity = currentVector;
                     }
+					if (runMode) {
+						walkingAudio.Stop ();
+						Audios.PlayAudio(runningAudio);
+					} else {
+						runningAudio.Stop ();
+						Audios.PlayAudio(walkingAudio);
+					}
                 } else {
-					float currentTime = headBobbingAnimator.GetCurrentAnimatorStateInfo (0).normalizedTime % 1;
 					camera.transform.localPosition *= cameraReturnRate;
 					headBobbingAnimator.enabled = false;
 					headBobbingAnimator.Play ("Camera bobbing", 0, 0);
+					StopFootStepAudios ();
                 }
             }
 
@@ -68,12 +79,14 @@ public class Movement : MonoBehaviour {
                 rigidbody.AddForce(transform.up * jumpStrenth);
                 jumpable = false;
                 groundTime = 0;
+				StopFootStepAudios ();
+				Audios.PlayAudio (jumpAudio);
             }
 
             if (Mathf.Abs(rigidbody.velocity.y) < 0.01) {
                 groundTime += Time.deltaTime;
                 if (groundTime >= .1) {
-                    jumpable = true;
+					LandOnGround ();
                 }
             }
 
@@ -86,19 +99,31 @@ public class Movement : MonoBehaviour {
 
     void OnCollisionEnter(Collision col) {
         if (col.gameObject.tag.Contains("Ground")) {
-            jumpable = true;
+			LandOnGround ();
         }
     }
 
 	void OnTriggerEnter(Collider col) {
-		if (col.gameObject.tag == "Chronolense Area") {
-			GetComponent<ChronolenseController> ().AreaEnter (col.gameObject.GetComponent<ChronolenseArea> ());
+		if (col.gameObject.tag == "Chronolens Area") {
+			GetComponent<ChronolensController> ().AreaEnter (col.gameObject.GetComponent<ChronolensArea> ());
 		}
 	}
 
 	void OnTriggerExit(Collider col) {
-		if (col.gameObject.tag == "Chronolense Area") {
-			GetComponent<ChronolenseController> ().AreaExit ();
+		if (col.gameObject.tag == "Chronolens Area") {
+			GetComponent<ChronolensController> ().AreaExit ();
 		}
+	}
+
+	void LandOnGround() {
+		if (!jumpable) { // Only play landing sound when just landed.
+			Audios.PlayAudio (landAudio);
+		}
+		jumpable = true;
+	}
+
+	void StopFootStepAudios() {
+		walkingAudio.Stop ();
+		runningAudio.Stop ();
 	}
 }

@@ -92,9 +92,10 @@
      <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
      <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
      <Compile Include="Assets\ProbeInterval.cs" />
+     <Compile Include="Assets\Scripts\Audios.cs" />
      <Compile Include="Assets\Scripts\CameraDragMoveZoom.cs" />
-     <Compile Include="Assets\Scripts\ChronolenseArea.cs" />
-     <Compile Include="Assets\Scripts\ChronolenseController.cs" />
+     <Compile Include="Assets\Scripts\ChronolensArea.cs" />
+     <Compile Include="Assets\Scripts\ChronolensController.cs" />
      <Compile Include="Assets\Scripts\DayTimeControl.cs" />
      <Compile Include="Assets\Scripts\DimLenseFlare.cs" />
      <Compile Include="Assets\Scripts\Locations.cs" />
@@ -141,7 +142,7 @@
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAAPreset3.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\FisheyeShader.shader" />
-     <None Include="Assets\Shaders\Chronolense.shader" />
+     <None Include="Assets\Shaders\Chronolens.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Uber.shader" />
      <None Include="Assets\Tessellation.shader" />
      <None Include="Assets\Standard Assets\Effects\ImageEffects\Shaders\Contrast Stretch\Apply.shader" />

@@ -1,10 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ChronolensController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Movement.cs">
     <Files>
-      <File FileName="Assets\Scripts\Movement.cs" Line="108" Column="44" />
-      <File FileName="Assets\Scripts\Audios.cs" Line="6" Column="89" />
-      <File FileName="Assets\Scripts\ChronolensController.cs" Line="62" Column="31" />
+      <File FileName="Assets\Scripts\Player\FeetCollider.cs" Line="9" Column="15" />
+      <File FileName="Assets\Scripts\Player\Movement.cs" Line="79" Column="34" />
+      <File FileName="Assets\Scripts\Environment\DayTimeControl.cs" Line="98" Column="15" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

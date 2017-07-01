@@ -8,7 +8,7 @@ public class Look : MonoBehaviour {
     public float sensitivityY;
     public float limitY;
 	public float depthOfFieldSpeed;
-    public new GameObject camera;
+    public GameObject camera;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
 	private float yEnable = 1;
@@ -26,14 +26,15 @@ public class Look : MonoBehaviour {
 			// Ray cast
 			Ray forwardRay;
 			if (VRDevice.isPresent) {
-				Vector3 forward = InputTracking.GetLocalRotation(VRNode.Head) * new Vector3(0, 0, 1);
+				Vector3 forward = InputTracking.GetLocalRotation (VRNode.Head) * new Vector3 (0, 0, 1);
 				forward = transform.rotation * forward;
-				forwardRay = new Ray(camera.transform.position, forward);
+				forwardRay = new Ray (camera.transform.position, forward);
 			} else {
-				forwardRay = new Ray(camera.transform.position, camera.transform.forward);
+				forwardRay = new Ray (camera.transform.position, camera.transform.forward);
 			}
-			
-			GetComponent<Movement>().forwardVector = new Vector3(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
+		
+			GetComponent<Movement> ().forwardVector = new Vector3 
+					(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
 
 			/*RaycastHit hit;
 
@@ -52,13 +53,18 @@ public class Look : MonoBehaviour {
 			} else {
 				yEnable = 1;
 			}
-            float deltaX = Input.GetAxisRaw("Mouse X") + Input.GetAxisRaw("Look X");
-            float deltaY = Input.GetAxisRaw("Mouse Y") + Input.GetAxisRaw("Look Y");
+			float deltaX = 0, deltaY = 0;
+			if (!GameManager.oculusControllerMode) {
+				deltaX = Input.GetAxisRaw ("Mouse X") + Input.GetAxisRaw ("Look X");
+				deltaY = Input.GetAxisRaw ("Mouse Y") + Input.GetAxisRaw ("Look Y");
+			} else {
+				deltaX = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick).x;
+			}
 			deltaY *= yEnable;
-			transform.Rotate(0, sensitivityX * deltaX, 0);
+			transform.Rotate (0, sensitivityX * deltaX, 0);
 			rotationY += deltaY * sensitivityY;
-            rotationY = Mathf.Clamp(rotationY, -limitY / 2, limitY / 2);
-            camera.transform.localEulerAngles = new Vector3(-rotationY, 0, 0);
+			rotationY = Mathf.Clamp (rotationY, -limitY / 2, limitY / 2);
+			camera.transform.localEulerAngles = new Vector3 (-rotationY, 0, 0);
         }
     }
 }

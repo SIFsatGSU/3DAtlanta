@@ -7,23 +7,27 @@ public class Movement : MonoBehaviour {
     public float walkingSpeed;
     public float runningSpeed;
     public float jumpStrenth;
-    public GameObject camera;
+    public GameObject fistAxis;
 	public float cameraReturnRate;
 	public Vector3 forwardVector;
 	public AudioSource walkingAudio;
 	public AudioSource runningAudio;
 	public AudioSource jumpAudio;
 	public AudioSource landAudio;
-	private new Rigidbody rigidbody;
 	[HideInInspector]
-    public bool grounded = true;
+	public bool grounded = true;
+	public GameObject playerCamera;
+	private new Rigidbody rigidbody;
     private float groundTime = 0;
     private bool gamepadRunMode;
 	private Animator headBobbingAnimator;
+	private Transform cameraContainer;
+
 	// Use this for initialization
 	void Start () {
         rigidbody = GetComponent<Rigidbody>();
-		headBobbingAnimator = camera.GetComponent<Animator> ();
+		headBobbingAnimator = playerCamera.GetComponent<Animator> ();
+		cameraContainer = playerCamera.transform.parent;
     }
 	
 	// Update is called once per frame
@@ -31,7 +35,13 @@ public class Movement : MonoBehaviour {
         if (Time.timeScale > 0) {
 			// Movement input
             if (grounded) { // Player also needs to be grounded to move
-                if (Input.GetAxisRaw("Run Gamepad") > 0) gamepadRunMode = true;
+				if (!GameManager.oculusControllerMode) {
+					if (Input.GetAxisRaw ("Run Gamepad") > 0)
+						gamepadRunMode = true;
+				} else {
+					if (OVRInput.Get(OVRInput.RawButton.LThumbstick))
+						gamepadRunMode = true;
+				}
 				Vector3 rightVector = Vector3.Cross (transform.up, forwardVector);
 
 				float verticalMovement = Input.GetAxisRaw("Vertical");
@@ -44,11 +54,17 @@ public class Movement : MonoBehaviour {
                 if (horizontalMovement == 0 && verticalMovement == 0) gamepadRunMode = false;
 
                 // Unified run mode taking input from both keyboard and gamepad.
-                bool runMode = Input.GetAxisRaw("Run") > 0 || gamepadRunMode;
+				bool runMode;
+
+				runMode = Input.GetAxisRaw ("Run") > 0 || gamepadRunMode;
 				Vector3 movementVector = forwardMovement + rightMovement;
                 movementVector.Normalize();
                 if (movementVector.magnitude > 0) {
-					headBobbingAnimator.enabled = true;
+					if (!GameManager.oculusControllerMode) {
+						headBobbingAnimator.enabled = true;
+					} else {
+						headBobbingAnimator.enabled = false;
+					}
                     rigidbody.velocity += movementVector * acceleration / Time.deltaTime;
                     float currentVelocity = Mathf.Sqrt(
                         rigidbody.velocity.x * rigidbody.velocity.x
@@ -68,13 +84,16 @@ public class Movement : MonoBehaviour {
 						Audios.PlayAudio(walkingAudio);
 					}
                 } else {
-					camera.transform.localPosition *= cameraReturnRate; // Move camera to (0, 0, 0) locally.
-					headBobbingAnimator.enabled = false;
-					headBobbingAnimator.Play ("Camera bobbing", 0, 0);
+					playerCamera.transform.localPosition *= cameraReturnRate; // Move camera to (0, 0, 0) locally.
+					if (!GameManager.oculusControllerMode) {
+						headBobbingAnimator.enabled = false;
+						headBobbingAnimator.Play ("Camera bobbing", 0, 0);
+					}
 					StopFootStepAudios ();
                 }
 
-				if (Input.GetAxisRaw("Jump") > 0) {
+				if (!GameManager.oculusControllerMode && Input.GetAxisRaw("Jump") > 0 ||
+						GameManager.oculusControllerMode && OVRInput.Get(OVRInput.RawButton.A)) {
 					transform.position += transform.up * .01f; // Move up a bit to prevent being grounded after jumping.
 					rigidbody.AddForce(transform.up * jumpStrenth);
 					grounded = false;
@@ -93,10 +112,17 @@ public class Movement : MonoBehaviour {
                 }
             }
 
+			if (GameManager.oculusControllerMode) {
+				Vector3 deltaCameraPos = playerCamera.transform.position - transform.position;
+				deltaCameraPos = Vector3.Scale (deltaCameraPos, new Vector3 (1, 0, 1));
+				transform.position += deltaCameraPos;
+				cameraContainer.position -= deltaCameraPos;
+			}
+
 			/*Vector3 latLng = Locations.PositionToLatLng (transform.position);
 			print (latLng.x + ", " + latLng.z);*/
         } else {
-            camera.GetComponent<Animator>().enabled = false;
+			playerCamera.GetComponent<Animator>().enabled = false;
         }
     }
 

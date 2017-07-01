@@ -1,10 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\Movement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Player\HandController.cs">
     <Files>
-      <File FileName="Assets\Scripts\Player\FeetCollider.cs" Line="9" Column="15" />
-      <File FileName="Assets\Scripts\Player\Movement.cs" Line="79" Column="34" />
-      <File FileName="Assets\Scripts\Environment\DayTimeControl.cs" Line="98" Column="15" />
+      <File FileName="Assets\Scripts\Player\FeetCollider.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\Movement.cs" Line="119" Column="22" />
+      <File FileName="Assets\Scripts\Environment\DayTimeControl.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Misc\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\OVRControllerCheck.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\HandAnimator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\Player\HandController.cs" Line="88" Column="4" />
+      <File FileName="Assets\Scripts\Misc\GrabbableObject.cs" Line="25" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

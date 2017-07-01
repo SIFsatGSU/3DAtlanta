@@ -5,6 +5,7 @@ using UnityEngine;
 public class OVRControllerCheck : MonoBehaviour {
     public int numberOfFramesTested;
 	public Animator chronolensAnimator;
+	public GameObject leftHand, rightHand;
 
 	private bool set = false;
 
@@ -20,6 +21,11 @@ public class OVRControllerCheck : MonoBehaviour {
             } else {
                 numberOfFramesTested--;
             }
-        }
+		} else {
+			if (!GameManager.oculusControllerMode) {
+				GameObject.Destroy (leftHand);
+				GameObject.Destroy (rightHand);
+			}
+		}
 	}
 }

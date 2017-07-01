@@ -130,6 +130,7 @@
      <Compile Include="Assets\Scripts\Environment\DimLenseFlare.cs" />
      <Compile Include="Assets\Scripts\MainController.cs" />
      <Compile Include="Assets\Scripts\Misc\Audios.cs" />
+     <Compile Include="Assets\Scripts\Misc\ChronolensGrab.cs" />
      <Compile Include="Assets\Scripts\Misc\GameManager.cs" />
      <Compile Include="Assets\Scripts\Misc\GrabbableObject.cs" />
      <Compile Include="Assets\Scripts\Misc\Locations.cs" />
@@ -271,6 +272,9 @@
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/UnityEngine.TestRunner.dll</HintPath>
+ </Reference>
+ <Reference Include="nunit.framework">
+ <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/TestRunner/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>

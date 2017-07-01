@@ -21,11 +21,11 @@ public class HandAnimator : MonoBehaviour {
 	void Update () {
 		//print (GameManager.oculusControllerMode);
 		if (GameManager.oculusControllerMode) {
-			moveToTarget (ref currentPinky, pinky);
-			moveToTarget (ref currentRing, ring);
-			moveToTarget (ref currentMiddle, middle);
-			moveToTarget (ref currentIndex, index);
-			moveToTarget (ref currentThumb, thumb);
+			MoveToTarget (ref currentPinky, pinky);
+			MoveToTarget (ref currentRing, ring);
+			MoveToTarget (ref currentMiddle, middle);
+			MoveToTarget (ref currentIndex, index);
+			MoveToTarget (ref currentThumb, thumb);
 			handAnimator.Play ("Pinky", 0, currentPinky);
 			handAnimator.Play ("Ring", 1, currentRing);
 			handAnimator.Play ("Middle", 2, currentMiddle);
@@ -34,11 +34,19 @@ public class HandAnimator : MonoBehaviour {
 		}
 	}
 
-	void moveToTarget(ref float current, float target) {
+	void MoveToTarget(ref float current, float target) {
 		if (Mathf.Abs(target - current) > animationSpeed) {
 			current += animationSpeed * (target - current) / Mathf.Abs(target - current);
 		} else {
 			current = target;
 		}
+	}
+
+	public void SnapAnimations() {
+		currentPinky = pinky;
+		currentRing = ring;
+		currentMiddle = middle;
+		currentIndex = index;
+		currentThumb = thumb;
 	}
 }

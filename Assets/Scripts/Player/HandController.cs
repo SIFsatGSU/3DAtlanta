@@ -17,11 +17,14 @@ public class HandController : MonoBehaviour {
 	private HashSet<GameObject> grabObjectSet = new HashSet<GameObject>();
 	private bool previouslyGrabbed = false;
 	private GameObject currentlyGrabbed;
+	private GrabbableObject currentGrabbableObject;
+	private float grabbingPinky, grabbingRing, grabbingMiddle, grabbingIndex, grabbingThumb;
 
 	// Use this for initialization
 	void Start () {
 		// Ignore collision with body.
 		Physics.IgnoreCollision(GetComponentInChildren<Collider>(), bodyCollider);
+		Physics.IgnoreCollision(GetComponentInChildren<Collider>(), feetCollider);
 
 		handAnimator = GetComponent<HandAnimator> ();
 		if (hand == VRNode.RightHand) {
@@ -46,19 +49,28 @@ public class HandController : MonoBehaviour {
 			}
 			transform.localRotation = InputTracking.GetLocalRotation (hand);
 
+			bool currentGrab = OVRInput.Get (fistAxis) >= grabThreshold;
 			if (!grabMode) {
 				if (!OVRInput.Get (triggerTouch)) {
 					handAnimator.index = 0;
 				} else {
 					handAnimator.index = Mathf.Lerp (fingerAnimationStart, 1,
-							OVRInput.Get (triggerAxis));
+						OVRInput.Get (triggerAxis));
 				}
 				float fistValue = Mathf.Lerp (fingerAnimationStart, 1,
-					OVRInput.Get (fistAxis));
+					                  OVRInput.Get (fistAxis));
 				handAnimator.middle = handAnimator.ring = handAnimator.pinky = fistValue;
-				handAnimator.thumb = OVRInput.Get (thumbTouch) ? 1 : 0;
+				if (OVRInput.Get (thumbTouch)) {
+					if (OVRInput.Get (triggerAxis) > .9 && OVRInput.Get (fistAxis) > .9) {
+						handAnimator.thumb = 1;
+					} else {
+						handAnimator.thumb = .55f;
+					}
+				} else {
+					handAnimator.thumb = 0;
+				}
 
-				bool currentGrab = OVRInput.Get (fistAxis) >= grabThreshold;
+
 				if (currentGrab && !previouslyGrabbed) {
 					if (grabObjectSet.Count > 0) {
 						float minDistance = float.MaxValue;
@@ -70,14 +82,37 @@ public class HandController : MonoBehaviour {
 								minDistance = currentDistance;
 							}
 						}
-						currentlyGrabbed.GetComponent<GrabbableObject> ().Grab (transform);
+						currentGrabbableObject = currentlyGrabbed.GetComponent<GrabbableObject> ();
+						if (!currentGrabbableObject.beingGrabbed) {
+							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand);
+							grabMode = true;
+
+							// Official.
+							handAnimator.pinky = currentGrabbableObject.grabbingPinky;
+							handAnimator.ring = currentGrabbableObject.grabbingRing;
+							handAnimator.middle = currentGrabbableObject.grabbingMiddle;
+							handAnimator.index = currentGrabbableObject.grabbingIndex;
+							handAnimator.thumb = currentGrabbableObject.grabbingThumb;
+							handAnimator.SnapAnimations ();
+						}
 					}
 				}
+
+			} else {
+				// For testing
+				handAnimator.pinky = currentGrabbableObject.grabbingPinky;
+				handAnimator.ring = currentGrabbableObject.grabbingRing;
+				handAnimator.middle = currentGrabbableObject.grabbingMiddle;
+				handAnimator.index = currentGrabbableObject.grabbingIndex;
+				handAnimator.thumb = currentGrabbableObject.grabbingThumb;
+				// ^ End for testing
+
 				if (!currentGrab && previouslyGrabbed) {
 					if (currentlyGrabbed != null) {
-						//currentlyGrabbed.GetComponent<GrabbableObject> ().Release ();
-						//currentlyGrabbed = null;
+						currentlyGrabbed.GetComponent<GrabbableObject> ().Release ();
+						currentlyGrabbed = null;
 					}
+					grabMode = false;
 				}
 			}
 

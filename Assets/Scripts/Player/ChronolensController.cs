@@ -4,40 +4,55 @@ using UnityEngine;
 
 public class ChronolensController : MonoBehaviour {
 	public Material chronolenseMaterial;
-	public Animator lenseAnimator;
+	public Animator lensActionAnimator, lensShowHideAnimator;
 	public float alphaChangeSpeed;
 	public AudioSource initiateAudio;
 	public AudioSource closeAudio;
-
+	public GameObject chronolens;
+	public Transform rightHolster;
+	public float chronolensReturnRate;
 	private bool keydown = false;
 	private bool lenseState = false;
 	private string nextState;
 	private string currentState;
 	private int currentStateLayer;
 	private int nextStateLayer;
+	private GrabbableObject chronolensGrabbable;
 
 	void Start() {
-		lenseAnimator.Play ("Alpha 0", 2, 1);
+		lensActionAnimator.Play ("Alpha 0", 2, 1);
+		chronolensGrabbable = chronolens.GetComponent<GrabbableObject> ();
 	}
 
 	void Update() {
-		if (Time.timeScale > 0) {
-			if (Input.GetAxisRaw("Chronolens Action") > 0 && !keydown) {
-				lenseState = !lenseState;
-				if (lenseState) {
-					lenseAnimator.Play ("Show", 0, 0);
-				} else {
-					lenseAnimator.Play ("Hide", 0, 0);
+		if (!GameManager.oculusControllerMode) {
+			if (Time.timeScale > 0) {
+				if (Input.GetAxisRaw ("Chronolens Action") > 0 && !keydown) {
+					lenseState = !lenseState;
+					if (lenseState) {
+						lensShowHideAnimator.Play ("Show", 0, 0);
+					} else {
+						lensShowHideAnimator.Play ("Hide", 0, 0);
+					}
 				}
 			}
+			keydown = Input.GetAxisRaw ("Chronolens Action") > 0;
 		}
-		keydown = Input.GetAxisRaw ("Chronolens Action") > 0;
 
 		if (nextState != "" &&
-				lenseAnimator.GetCurrentAnimatorStateInfo (currentStateLayer).normalizedTime >= 1 &&
-				lenseAnimator.GetCurrentAnimatorStateInfo (currentStateLayer).IsName(currentState)) {
-			lenseAnimator.Play (nextState, nextStateLayer);
+				lensActionAnimator.GetCurrentAnimatorStateInfo (currentStateLayer).normalizedTime >= 1 &&
+				lensActionAnimator.GetCurrentAnimatorStateInfo (currentStateLayer).IsName (currentState)) {
+			lensActionAnimator.Play (nextState, nextStateLayer);
 			nextState = "";
+		}
+
+		if (GameManager.oculusControllerMode) {
+			if (!chronolensGrabbable.beingGrabbed) {
+				chronolens.transform.position = Vector3.Lerp(chronolens.transform.position,
+						rightHolster.position, chronolensReturnRate);
+				chronolens.transform.rotation = Quaternion.Lerp (chronolens.transform.rotation,
+						rightHolster.rotation, chronolensReturnRate);
+			}
 		}
 	}
 
@@ -47,9 +62,9 @@ public class ChronolensController : MonoBehaviour {
 		chronolenseMaterial.SetFloat ("_YawOffset", area.yawOffset);
 
 		currentState = "Initiate";
-		currentStateLayer = 1;
+		currentStateLayer = 0;
 		nextState = "Alpha 1";
-		nextStateLayer = 2;
+		nextStateLayer = 1;
 		PlayCurrentState ();
 		Audios.PlayAudio (initiateAudio);
 	}
@@ -57,14 +72,14 @@ public class ChronolensController : MonoBehaviour {
 	public void AreaExit() {
 		initiateAudio.Stop (); //Stop the init audio if not already.
 		currentState = "Alpha 0";
-		currentStateLayer = 2;
+		currentStateLayer = 1;
 		PlayCurrentState ();
 		nextState = "Close";
-		nextStateLayer = 1;
+		nextStateLayer = 0;
 		Audios.PlayAudio (closeAudio);
 	}
 
 	void PlayCurrentState() {
-		lenseAnimator.Play (currentState, currentStateLayer, 0);
+		lensActionAnimator.Play (currentState, currentStateLayer, 0);
 	}
 }

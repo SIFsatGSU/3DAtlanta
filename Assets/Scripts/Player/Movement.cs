@@ -7,13 +7,14 @@ public class Movement : MonoBehaviour {
     public float walkingSpeed;
     public float runningSpeed;
     public float jumpStrenth;
-    public GameObject fistAxis;
 	public float cameraReturnRate;
 	public Vector3 forwardVector;
 	public AudioSource walkingAudio;
 	public AudioSource runningAudio;
 	public AudioSource jumpAudio;
 	public AudioSource landAudio;
+	public Collider bodyCollider, feetCollider;
+
 	[HideInInspector]
 	public bool grounded = true;
 	public GameObject playerCamera;
@@ -125,6 +126,13 @@ public class Movement : MonoBehaviour {
 			playerCamera.GetComponent<Animator>().enabled = false;
         }
     }
+
+	void OnCollisionEnter(Collision col) {
+		if (col.gameObject.tag == "Grabbable") {
+			Physics.IgnoreCollision (bodyCollider, col.collider);
+			Physics.IgnoreCollision (feetCollider, col.collider);
+		}
+	}
 
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Chronolens Area") {

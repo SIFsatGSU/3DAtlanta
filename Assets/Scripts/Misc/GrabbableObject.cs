@@ -20,16 +20,15 @@ public class GrabbableObject : MonoBehaviour {
 	}
 
 	private void SnapToHand() {
-		print (handPoint.position);
-		transform.rotation = deltaQuaternion(transform.rotation, grabbingPoint.rotation)
-				* handPoint.rotation;
+		//print (handPoint.position);
+		transform.rotation = handPoint.rotation;
+		transform.rotation = deltaQuaternion (transform.rotation, grabbingPoint.rotation) * transform.rotation;
 		transform.position = handPoint.position -
 				(grabbingPoint.position - transform.position);
-		transform.position = handPoint.position;
 	}
 
 	private Quaternion deltaQuaternion(Quaternion q1, Quaternion q2) {
-		return q1 * Quaternion.Inverse (q2);
+		return q2 * Quaternion.Inverse (q1);
 	}
 
 	public void Grab(Transform handTransform) {

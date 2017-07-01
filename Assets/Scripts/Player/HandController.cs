@@ -75,8 +75,8 @@ public class HandController : MonoBehaviour {
 				}
 				if (!currentGrab && previouslyGrabbed) {
 					if (currentlyGrabbed != null) {
-						currentlyGrabbed.GetComponent<GrabbableObject> ().Release ();
-						currentlyGrabbed = null;
+						//currentlyGrabbed.GetComponent<GrabbableObject> ().Release ();
+						//currentlyGrabbed = null;
 					}
 				}
 			}

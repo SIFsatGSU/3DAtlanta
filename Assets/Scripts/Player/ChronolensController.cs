@@ -20,7 +20,7 @@ public class ChronolensController : MonoBehaviour {
 	private GrabbableObject chronolensGrabbable;
 
 	void Start() {
-		lensActionAnimator.Play ("Alpha 0", 2, 1);
+		lensActionAnimator.Play ("Alpha 0", 1, 1);
 		chronolensGrabbable = chronolens.GetComponent<GrabbableObject> ();
 	}
 

@@ -103,4 +103,13 @@ public class GrabbableObject : MonoBehaviour {
 	public bool beingGrabbed {
 		get { return handPoint != null; }
 	}
+
+	void OnTriggerEnter(Collider col) {
+		if (col.gameObject.tag == "Off World Trigger") {
+			Vector3 temp = transform.position;
+			temp.y = 1;
+			transform.position = temp;
+			GetComponent<Rigidbody> ().velocity = Vector3.zero;
+		}
+	}
 }

@@ -28,13 +28,14 @@ public class DayTimeControl : MonoBehaviour {
     public Light moonLight;
     public float sunToFogRatio;
     public float importantLightRadius;
+	public float updateLightInteval;
 
     private GameObject[] streetLights; // For use in turning on/off and importance setting functions
     private Animator dayTimeAnimator;
     // To prevent the script from keeping looping while there's nothing to change
     private bool streetLightTurned = true;
 	private PostProcessingProfile cameraProfile;
-
+	private float lightUpdateElapse = 0;
     // Use this for initialization
 	void Start () {
         dayTimeAnimator = GetComponent<Animator>();
@@ -100,9 +101,7 @@ public class DayTimeControl : MonoBehaviour {
             //cameraTonemapping.enabled = true;
 			cameraProfile.eyeAdaptation.enabled = true;
         }
-
-        changeStreetLightImportance();
-
+			
         // To keep sun at the same place for player.
         sunMoonContainer.transform.position = mainCamera.transform.position;
     }
@@ -124,7 +123,8 @@ public class DayTimeControl : MonoBehaviour {
         if (streetLightTurned != turn) { // Only execute when there's a change
             streetLightTurned = turn;
             foreach (GameObject light in streetLights) {
-                ((Light) light.GetComponent(typeof(Light))).enabled = turn;
+				light.GetComponent<AdjustLightImportance> ().enabled
+						= light.GetComponent<Light>().enabled = turn;
             }
         }
     }

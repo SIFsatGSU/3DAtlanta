@@ -106,25 +106,14 @@ public class DayTimeControl : MonoBehaviour {
         sunMoonContainer.transform.position = mainCamera.transform.position;
     }
 
-    // Called to change street lights' importance to save on performance.
-    void changeStreetLightImportance() {
-        if (streetLightTurned) { // When street lights are on.
-            foreach (GameObject light in streetLights) {
-                if ((light.transform.position - mainCamera.transform.position).sqrMagnitude < importantLightRadius * importantLightRadius) {
-                    ((Light)light.GetComponent(typeof(Light))).renderMode = LightRenderMode.ForcePixel;
-                } else {
-                    ((Light)light.GetComponent(typeof(Light))).renderMode = LightRenderMode.ForceVertex;
-                }
-            }
-        }
-    }
-
     void turnStreetLight(bool turn) {
         if (streetLightTurned != turn) { // Only execute when there's a change
             streetLightTurned = turn;
             foreach (GameObject light in streetLights) {
-				light.GetComponent<AdjustLightImportance> ().enabled
-						= light.GetComponent<Light>().enabled = turn;
+				light.GetComponent<AdjustLightImportance> ().enabled = turn;
+				if (!turn) {
+					light.GetComponent<Light>().enabled = false;
+				}
             }
         }
     }

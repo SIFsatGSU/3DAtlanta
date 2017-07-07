@@ -18,7 +18,8 @@ public class AdjustLightImportance : MonoBehaviour {
 	}
 
 	void Update () {
-		cosMaxAngle = Mathf.Cos (Mathf.Deg2Rad * importanceConeAngle / 2);
+		// cosMaxAngle = Mathf.Cos (Mathf.Deg2Rad * importanceConeAngle / 2);
+		// ^ That was for testing.
 		if (updateTimeElapsed >= updateInterval) {
 			updateTimeElapsed = 0;
 			ControlLight ();
@@ -33,7 +34,7 @@ public class AdjustLightImportance : MonoBehaviour {
 		// If light lays in the cone or closer than min distance.
 		if (distance < importantLightRadius) {
 			if (distance <= importanceConeMinDistance ||
-				Vector3.Dot(camToLight, cameraTransform.forward) / distance >= cosMaxAngle) {
+					Vector3.Dot(camToLight, cameraTransform.forward) / distance >= cosMaxAngle) {
 				thisLight.enabled = true;
 				return;
 			}

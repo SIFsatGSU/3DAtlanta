@@ -13,12 +13,13 @@ public class GrabbableObject : MonoBehaviour {
 	public float velocityAlpha;
 	public float angularVelocityAlpha;
 	public bool enableMovementTracking;
+
 	private Vector3 lastPosition;
 	private Quaternion lastRotation;
 	private Vector3 currentVelocity;
 	private Vector3 currentAngularVelocity;
 	private Rigidbody rigidBody;
-	private bool beenGrabbed;
+	private HandController grabbingHand;
 
 	// Use this for initialization
 	void Start () {
@@ -61,7 +62,6 @@ public class GrabbableObject : MonoBehaviour {
 				lastRotation = transform.rotation;
 			}
 		}
-		beenGrabbed = beingGrabbed;
 	}
 
 	private void SnapToHand() {
@@ -77,9 +77,10 @@ public class GrabbableObject : MonoBehaviour {
 		return q2 * Quaternion.Inverse (q1);
 	}
 
-	public void Grab(Transform handTransform, bool mirrored) {
+	public void Grab(Transform handTransform, bool mirrored, HandController hand) {
 		handPoint = handTransform;
 		mirrorX = mirrored;
+		grabbingHand = hand;
 
 		SnapToHand ();
 		if (enableMovementTracking) {
@@ -93,6 +94,8 @@ public class GrabbableObject : MonoBehaviour {
 
 	public void Release() {
 		handPoint = null;
+		grabbingHand = null;
+
 		if (enableMovementTracking) {
 			rigidBody.isKinematic = false;
 			rigidBody.velocity = currentVelocity;
@@ -104,10 +107,14 @@ public class GrabbableObject : MonoBehaviour {
 		get { return handPoint != null; }
 	}
 
+	public HandController hand {
+		get { return grabbingHand; }
+	}
+
 	void OnTriggerEnter(Collider col) {
 		if (col.gameObject.tag == "Off World Trigger") {
 			Vector3 temp = transform.position;
-			temp.y = 1;
+			temp.y = .3f;
 			transform.position = temp;
 			GetComponent<Rigidbody> ().velocity = Vector3.zero;
 		}

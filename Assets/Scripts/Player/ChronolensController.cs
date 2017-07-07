@@ -5,9 +5,10 @@ using UnityEngine;
 public class ChronolensController : MonoBehaviour {
 	public Material chronolenseMaterial;
 	public Animator lensActionAnimator, lensShowHideAnimator;
-	public float alphaChangeSpeed;
 	public AudioSource initiateAudio;
-	public AudioSource closeAudio;
+	public AudioSource deactivateAudio;
+	public AudioClip initiateClip; // LFE clip!
+	public AudioClip deactivateClip; // LFE clip!
 	public GameObject chronolens;
 	public Transform rightHolster;
 	public float chronolensReturnRate;
@@ -18,10 +19,14 @@ public class ChronolensController : MonoBehaviour {
 	private int currentStateLayer;
 	private int nextStateLayer;
 	private GrabbableObject chronolensGrabbable;
+	private OVRHapticsClip initiateHapticsClip;
+	private OVRHapticsClip deactivateHapticsClip;
 
 	void Start() {
 		lensActionAnimator.Play ("Alpha 0", 1, 1);
 		chronolensGrabbable = chronolens.GetComponent<GrabbableObject> ();
+		initiateHapticsClip = new OVRHapticsClip (initiateClip, 1);
+		deactivateHapticsClip = new OVRHapticsClip (deactivateClip, 1);
 	}
 
 	void Update() {
@@ -57,9 +62,10 @@ public class ChronolensController : MonoBehaviour {
 	}
 
 	public void AreaEnter(ChronolensArea area) {
-		closeAudio.Stop (); //Stop the closing audio if not already.
+		deactivateAudio.Stop (); //Stop the closing audio if not already.
 		chronolenseMaterial.SetTexture ("_CubeMap", area.hdri);
 		chronolenseMaterial.SetFloat ("_YawOffset", area.yawOffset);
+		VibrateHand (initiateHapticsClip);
 
 		currentState = "Initiate";
 		currentStateLayer = 0;
@@ -71,15 +77,23 @@ public class ChronolensController : MonoBehaviour {
 
 	public void AreaExit() {
 		initiateAudio.Stop (); //Stop the init audio if not already.
+		VibrateHand (deactivateHapticsClip);
+
 		currentState = "Alpha 0";
 		currentStateLayer = 1;
 		PlayCurrentState ();
 		nextState = "Close";
 		nextStateLayer = 0;
-		Audios.PlayAudio (closeAudio);
+		Audios.PlayAudio (deactivateAudio);
 	}
 
 	void PlayCurrentState() {
 		lensActionAnimator.Play (currentState, currentStateLayer, 0);
+	}
+
+	void VibrateHand(OVRHapticsClip clip) {
+		if (chronolensGrabbable.beingGrabbed) {
+			chronolensGrabbable.hand.Vibrate (clip);
+		}
 	}
 }

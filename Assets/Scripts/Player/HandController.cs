@@ -13,6 +13,7 @@ public class HandController : MonoBehaviour {
 
 	private OVRInput.RawNearTouch triggerTouch, thumbTouch;
 	private OVRInput.RawAxis1D triggerAxis, fistAxis;
+	private	OVRHaptics.OVRHapticsChannel hapticsChannel;
 	private bool grabMode = false;
 	private HashSet<GameObject> grabObjectSet = new HashSet<GameObject>();
 	private bool previouslyGrabbed = false;
@@ -32,11 +33,13 @@ public class HandController : MonoBehaviour {
 			thumbTouch = OVRInput.RawNearTouch.RThumbButtons;
 			triggerAxis = OVRInput.RawAxis1D.RIndexTrigger;
 			fistAxis = OVRInput.RawAxis1D.RHandTrigger;
+			hapticsChannel = OVRHaptics.RightChannel;
 		} else if (hand == VRNode.LeftHand) {
 			triggerTouch = OVRInput.RawNearTouch.LIndexTrigger;
 			thumbTouch = OVRInput.RawNearTouch.LThumbButtons;
 			triggerAxis = OVRInput.RawAxis1D.LIndexTrigger;
 			fistAxis = OVRInput.RawAxis1D.LHandTrigger;
+			hapticsChannel = OVRHaptics.LeftChannel;
 		}
 	}
 	
@@ -84,7 +87,7 @@ public class HandController : MonoBehaviour {
 						}
 						currentGrabbableObject = currentlyGrabbed.GetComponent<GrabbableObject> ();
 						if (!currentGrabbableObject.beingGrabbed) {
-							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand);
+							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand, this);
 							grabMode = true;
 
 							// Official.
@@ -118,6 +121,10 @@ public class HandController : MonoBehaviour {
 
 			previouslyGrabbed = OVRInput.Get (fistAxis) >= grabThreshold;
 		}
+	}
+
+	public void Vibrate(OVRHapticsClip clip) {
+		hapticsChannel.Preempt (clip);
 	}
 
 	void OnTriggerEnter(Collider col) {

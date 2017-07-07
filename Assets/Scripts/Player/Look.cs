@@ -8,32 +8,37 @@ public class Look : MonoBehaviour {
     public float sensitivityY;
     public float limitY;
 	public float depthOfFieldSpeed;
-    public GameObject camera;
+    public GameObject playerCamera;
+	public Transform holsterContainer;
+
+	private GameObject cameraContainer;
     private new Rigidbody rigidbody;
     private float rotationY = 0;
 	private float yEnable = 1;
 	private PostProcessingProfile cameraProfile;
+	private Movement movementComponent;
+
     // Use this for initialization
     void Start () {
-		cameraProfile = camera.GetComponentInChildren<PostProcessingBehaviour> ().profile;
-		print (cameraProfile);
+		cameraContainer = playerCamera.transform.parent.gameObject;
+		cameraProfile = playerCamera.GetComponent<PostProcessingBehaviour> ().profile;
+		movementComponent = GetComponent<Movement> ();
     }
 
     // Update is called once per frame
     void Update () {
         if (Time.timeScale > 0) {
-			
 			// Ray cast
 			Ray forwardRay;
 			if (VRDevice.isPresent) {
 				Vector3 forward = InputTracking.GetLocalRotation (VRNode.Head) * new Vector3 (0, 0, 1);
 				forward = transform.rotation * forward;
-				forwardRay = new Ray (camera.transform.position, forward);
+				forwardRay = new Ray (playerCamera.transform.position, forward);
 			} else {
-				forwardRay = new Ray (camera.transform.position, camera.transform.forward);
+				forwardRay = new Ray (cameraContainer.transform.position, cameraContainer.transform.forward);
 			}
 		
-			GetComponent<Movement> ().forwardVector = new Vector3 
+			movementComponent.forwardVector = new Vector3 
 					(forwardRay.direction.x, 0, forwardRay.direction.z).normalized;
 
 			/*RaycastHit hit;
@@ -64,7 +69,11 @@ public class Look : MonoBehaviour {
 			transform.Rotate (0, sensitivityX * deltaX, 0);
 			rotationY += deltaY * sensitivityY;
 			rotationY = Mathf.Clamp (rotationY, -limitY / 2, limitY / 2);
-			camera.transform.localEulerAngles = new Vector3 (-rotationY, 0, 0);
+			cameraContainer.transform.localEulerAngles = new Vector3 (-rotationY, 0, 0);
+
+			// Rotate the holsters.
+			holsterContainer.rotation = Quaternion.Euler (new Vector3 (0, 
+					playerCamera.transform.rotation.eulerAngles.y, 0));
         }
     }
 }

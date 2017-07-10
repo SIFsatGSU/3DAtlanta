@@ -25,8 +25,6 @@ public class ChronolensController : MonoBehaviour {
 	void Start() {
 		lensActionAnimator.Play ("Alpha 0", 1, 1);
 		chronolensGrabbable = chronolens.GetComponent<GrabbableObject> ();
-		initiateHapticsClip = new OVRHapticsClip (initiateClip, 1);
-		deactivateHapticsClip = new OVRHapticsClip (deactivateClip, 1);
 	}
 
 	void Update() {
@@ -61,6 +59,12 @@ public class ChronolensController : MonoBehaviour {
 		}
 	}
 
+	// Only run when oculusTouchMode is true.
+	public void InitializeHapticsClips() {
+		initiateHapticsClip = new OVRHapticsClip (initiateClip, 1);
+		deactivateHapticsClip = new OVRHapticsClip (deactivateClip, 1);
+	}
+
 	public void AreaEnter(ChronolensArea area) {
 		deactivateAudio.Stop (); //Stop the closing audio if not already.
 		chronolenseMaterial.SetTexture ("_CubeMap", area.hdri);
@@ -92,8 +96,10 @@ public class ChronolensController : MonoBehaviour {
 	}
 
 	void VibrateHand(OVRHapticsClip clip) {
-		if (chronolensGrabbable.beingGrabbed) {
-			chronolensGrabbable.hand.Vibrate (clip);
+		if (GameManager.oculusControllerMode) {
+			if (chronolensGrabbable.beingGrabbed) {
+				chronolensGrabbable.hand.Vibrate (clip);
+			}
 		}
 	}
 }

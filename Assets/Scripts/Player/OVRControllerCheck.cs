@@ -6,7 +6,7 @@ public class OVRControllerCheck : MonoBehaviour {
     public int numberOfFramesTested;
 	public Animator chronolensAnimator;
 	public GameObject leftHand, rightHand;
-
+	public ChronolensController chronolensController;
 	private bool set = false;
 
     // Use this for initialization
@@ -16,6 +16,7 @@ public class OVRControllerCheck : MonoBehaviour {
                     OVRInput.IsControllerConnected(OVRInput.Controller.RTouch) && !set) {
 				GameManager.oculusControllerMode = true;
 				chronolensAnimator.enabled = false;
+				chronolensController.InitializeHapticsClips ();
                 set = true;
                 numberOfFramesTested = 0;
             } else {

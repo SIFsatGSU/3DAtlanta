@@ -67,14 +67,10 @@ public class GrabbableObject : MonoBehaviour {
 	private void SnapToHand() {
 		Transform grabbingPointTransform = mirrorX ? mirroredGrabbingPoint : grabbingPoint;
 
-		transform.rotation = handPoint.rotation;
-		transform.rotation = deltaQuaternion (grabbingPointTransform.rotation, transform.rotation) * transform.rotation;
+		transform.rotation = Quaternion.identity;
+		transform.rotation = handPoint.rotation * Quaternion.Inverse(grabbingPointTransform.rotation);
 		transform.position = handPoint.position -
 			(grabbingPointTransform.position - transform.position);
-	}
-
-	private Quaternion deltaQuaternion(Quaternion q1, Quaternion q2) {
-		return q2 * Quaternion.Inverse (q1);
 	}
 
 	public void Grab(Transform handTransform, bool mirrored, HandController hand) {

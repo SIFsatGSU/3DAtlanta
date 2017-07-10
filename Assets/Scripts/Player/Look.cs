@@ -17,6 +17,7 @@ public class Look : MonoBehaviour {
 	private float yEnable = 1;
 	private PostProcessingProfile cameraProfile;
 	private Movement movementComponent;
+	private float currentHolsterAngle;
 
     // Use this for initialization
     void Start () {
@@ -31,9 +32,9 @@ public class Look : MonoBehaviour {
 			// Ray cast
 			Ray forwardRay;
 			if (VRDevice.isPresent) {
-				Vector3 forward = InputTracking.GetLocalRotation (VRNode.Head) * new Vector3 (0, 0, 1);
-				forward = transform.rotation * forward;
-				forwardRay = new Ray (playerCamera.transform.position, forward);
+				//Vector3 forward = InputTracking.GetLocalRotation (VRNode.Head) * new Vector3 (0, 0, 1);
+				//forward = transform.rotation * forward;
+				forwardRay = new Ray (playerCamera.transform.position, playerCamera.transform.forward);
 			} else {
 				forwardRay = new Ray (cameraContainer.transform.position, cameraContainer.transform.forward);
 			}
@@ -72,8 +73,8 @@ public class Look : MonoBehaviour {
 			cameraContainer.transform.localEulerAngles = new Vector3 (-rotationY, 0, 0);
 
 			// Rotate the holsters.
-			holsterContainer.rotation = Quaternion.Euler (new Vector3 (0, 
-					playerCamera.transform.rotation.eulerAngles.y, 0));
+			float holsterAngle = Mathf.Atan2(playerCamera.transform.right.x, playerCamera.transform.right.z) * Mathf.Rad2Deg - 90;
+			holsterContainer.rotation = Quaternion.Euler (new Vector3 (0, holsterAngle, 0));
         }
     }
 }

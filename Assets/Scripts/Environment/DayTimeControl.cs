@@ -9,6 +9,9 @@ using UnityEngine.PostProcessing;
 
 public class DayTimeControl : MonoBehaviour {
     public float timeFlowingRate; // Measured as (In game) Hours per (Real life) second
+	public float timeFlowingRateDelta;
+	public float maxTimeFlowingRate;
+
 	public GameObject timeTextBox;
 	public GameObject mainCamera;
 	public GameObject sunMoonContainer;
@@ -45,13 +48,22 @@ public class DayTimeControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown (KeyCode.Period))
+		if (Input.GetKeyDown (KeyCode.Period)) {
 			currentTime += .5f;
-		if (Input.GetKeyDown (KeyCode.Comma))
+		}
+		if (Input.GetKeyDown (KeyCode.Comma)) {
 			currentTime -= .5f;
+		}
+		if (Input.GetKeyDown (KeyCode.RightBracket)) {
+			timeFlowingRate = Mathf.Clamp(timeFlowingRate + timeFlowingRateDelta, - maxTimeFlowingRate, maxTimeFlowingRate);
+		}
+		if (Input.GetKeyDown (KeyCode.LeftBracket)) {
+			timeFlowingRate = Mathf.Clamp(timeFlowingRate - timeFlowingRateDelta, - maxTimeFlowingRate, maxTimeFlowingRate);
+		}
+
         currentTime += timeFlowingRate * Time.deltaTime;
 		currentTime = (currentTime % 24 + 24) % 24;
-		timeTextBox.GetComponent<Text> ().text = (int)(currentTime) + ":" + (int)(currentTime % 1 * 60);
+		timeTextBox.GetComponent<Text> ().text = (int)(currentTime) + ":" + (int)(currentTime % 1 * 60) + " >> " + (timeFlowingRate * 60).ToString ("F2");
 
         float alpha;
 		if (currentTime < sunRiseTime) {

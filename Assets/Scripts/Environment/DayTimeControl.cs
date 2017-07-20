@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.PostProcessing;
 
+//[ExecuteInEditMode]
 public class DayTimeControl : MonoBehaviour {
     public float timeFlowingRate; // Measured as (In game) Hours per (Real life) second
 	public float timeFlowingRateDelta;
@@ -24,8 +25,8 @@ public class DayTimeControl : MonoBehaviour {
 
     public float streetLightOnTime;
     public float streetLightOffTime;
-    public float sunLightToAmbientCoefficient;
-    public float moonLightToAmbientCoefficient;
+	public Color ambientColor;
+	public Color fogColor;
     public float currentTime;
     public Light sunLight;
     public Light moonLight;
@@ -90,17 +91,10 @@ public class DayTimeControl : MonoBehaviour {
 			dayTimeAnimator.Play("Daytime", 0, linear (.5f, 1, alpha));
         }
 
-        // Change the intensity of the ambient light according to the intensity of the sunlight or moonlight.
-        if (currentTime >= sunRiseTime && currentTime <= sunSetTime) {
-            float ambientIntensity = sunLight.intensity * sunLightToAmbientCoefficient;
-            RenderSettings.ambientLight = sunLight.color * ambientIntensity;
-        } else {
-            float ambientIntensity = moonLight.intensity * moonLightToAmbientCoefficient;
-            RenderSettings.ambientLight = moonLight.color * ambientIntensity;
-        }
-        // Change the fog color based on the intensity of the sunlight.
-		//RenderSettings.fogColor = new Color(sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio, sunLight.intensity * sunToFogRatio);
-		RenderSettings.fogColor = sunLight.color * sunLight.intensity;
+        // Apply animated ambient light.
+        RenderSettings.ambientLight = ambientColor;
+		// Apply animated fog color.
+		RenderSettings.fogColor = fogColor;
 
 		// Turn the street light on or off
         if (currentTime >= streetLightOnTime || currentTime <= streetLightOffTime) {

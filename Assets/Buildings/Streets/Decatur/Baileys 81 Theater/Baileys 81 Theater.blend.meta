@@ -43,6 +43,11 @@ ModelImporter:
     100070: Cylinder_011
     100072: Cylinder_012
     100074: Cylinder_013
+    100076: Curve_008
+    100078: BezierCircle
+    100080: Curve_000
+    100082: Curve_001
+    100084: Curve_002
     400000: //RootNode
     400002: Mesh10_Model_003
     400004: Mesh1_marquee_side_scallop_1_1_Model_002
@@ -81,6 +86,11 @@ ModelImporter:
     400070: Cylinder_011
     400072: Cylinder_012
     400074: Cylinder_013
+    400076: Curve_008
+    400078: BezierCircle
+    400080: Curve_000
+    400082: Curve_001
+    400084: Curve_002
     2300000: Mesh10_Model_003
     2300002: Mesh1_marquee_side_scallop_1_1_Model_002
     2300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -119,6 +129,11 @@ ModelImporter:
     2300070: Cylinder_011
     2300072: Cylinder_012
     2300074: Cylinder_013
+    2300076: Curve_008
+    2300078: BezierCircle
+    2300080: Curve_000
+    2300082: Curve_001
+    2300084: Curve_002
     3300000: Mesh10_Model_003
     3300002: Mesh1_marquee_side_scallop_1_1_Model_002
     3300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -157,6 +172,11 @@ ModelImporter:
     3300070: Cylinder_011
     3300072: Cylinder_012
     3300074: Cylinder_013
+    3300076: Curve_008
+    3300078: BezierCircle
+    3300080: Curve_000
+    3300082: Curve_001
+    3300084: Curve_002
     4300000: Mesh6_marquee_side_scallop1_Model_002
     4300002: Mesh2_marquee_side_scallop_1_1_Model_002
     4300004: Mesh3_marquee_side_scallop_1_1_Model_002
@@ -194,6 +214,11 @@ ModelImporter:
     4300068: Cylinder_008
     4300070: Cylinder_007
     4300072: Cylinder_006
+    4300074: Curve_008
+    4300076: BezierCircle
+    4300078: Curve_000
+    4300080: Curve_002
+    4300082: Curve_001
     7400000: Default Take
     9500000: //RootNode
   materials:

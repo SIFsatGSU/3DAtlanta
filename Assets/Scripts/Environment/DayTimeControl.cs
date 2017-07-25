@@ -34,6 +34,10 @@ public class DayTimeControl : MonoBehaviour {
     public float importantLightRadius;
 	public float updateLightInteval;
 
+	public Material redNeon;
+	public Material whiteNeon;
+
+	private Color redNeonColor, whiteNeonColor;
     private GameObject[] streetLights; // For use in turning on/off and importance setting functions
     private Animator dayTimeAnimator;
     // To prevent the script from keeping looping while there's nothing to change
@@ -45,6 +49,8 @@ public class DayTimeControl : MonoBehaviour {
         dayTimeAnimator = GetComponent<Animator>();
         streetLights = GameObject.FindGameObjectsWithTag("Street Light");
 		cameraProfile = mainCamera.GetComponent<PostProcessingBehaviour> ().profile;
+		ColorUtility.TryParseHtmlString ("#991600", out redNeonColor);
+		ColorUtility.TryParseHtmlString ("#999999", out whiteNeonColor);
     }
 	
 	// Update is called once per frame
@@ -115,6 +121,8 @@ public class DayTimeControl : MonoBehaviour {
     void turnStreetLight(bool turn) {
         if (streetLightTurned != turn) { // Only execute when there's a change
             streetLightTurned = turn;
+			whiteNeon.SetColor ("_EmissionColor", turn ? whiteNeonColor : Color.black);
+			redNeon.SetColor ("_EmissionColor", turn ? redNeonColor : Color.black);
             foreach (GameObject light in streetLights) {
 				light.GetComponent<AdjustLightImportance> ().enabled = turn;
 				if (!turn) {

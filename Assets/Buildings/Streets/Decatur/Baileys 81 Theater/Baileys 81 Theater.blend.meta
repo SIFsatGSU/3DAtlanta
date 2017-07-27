@@ -48,6 +48,24 @@ ModelImporter:
     100080: Curve_000
     100082: Curve_001
     100084: Curve_002
+    100086: BezierCurve
+    100088: BezierCurve_001
+    100090: BezierCurve_002
+    100092: BezierCurve_003
+    100094: BezierCurve_004
+    100096: BezierCurve_005
+    100098: BezierCurve_006
+    100100: BezierCurve_007
+    100102: Curve_003
+    100104: Curve_004
+    100106: 8_Neon
+    100108: Letter_neon
+    100110: Neon_Circle
+    100112: Red_neon
+    100114: Red_neon_MeshPart0
+    100116: Red_neon_MeshPart1
+    100118: Red_neon_MeshPart2
+    100120: White_Neon
     400000: //RootNode
     400002: Mesh10_Model_003
     400004: Mesh1_marquee_side_scallop_1_1_Model_002
@@ -91,6 +109,24 @@ ModelImporter:
     400080: Curve_000
     400082: Curve_001
     400084: Curve_002
+    400086: BezierCurve
+    400088: BezierCurve_001
+    400090: BezierCurve_002
+    400092: BezierCurve_003
+    400094: BezierCurve_004
+    400096: BezierCurve_005
+    400098: BezierCurve_006
+    400100: BezierCurve_007
+    400102: Curve_003
+    400104: Curve_004
+    400106: 8_Neon
+    400108: Letter_neon
+    400110: Neon_Circle
+    400112: Red_neon
+    400114: Red_neon_MeshPart0
+    400116: Red_neon_MeshPart1
+    400118: Red_neon_MeshPart2
+    400120: White_Neon
     2300000: Mesh10_Model_003
     2300002: Mesh1_marquee_side_scallop_1_1_Model_002
     2300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -134,6 +170,23 @@ ModelImporter:
     2300080: Curve_000
     2300082: Curve_001
     2300084: Curve_002
+    2300086: BezierCurve
+    2300088: BezierCurve_001
+    2300090: BezierCurve_002
+    2300092: BezierCurve_003
+    2300094: BezierCurve_004
+    2300096: BezierCurve_005
+    2300098: BezierCurve_006
+    2300100: BezierCurve_007
+    2300102: Curve_003
+    2300104: Curve_004
+    2300106: 8_Neon
+    2300108: Letter_neon
+    2300110: Neon_Circle
+    2300112: Red_neon_MeshPart0
+    2300114: Red_neon_MeshPart1
+    2300116: Red_neon_MeshPart2
+    2300118: White_Neon
     3300000: Mesh10_Model_003
     3300002: Mesh1_marquee_side_scallop_1_1_Model_002
     3300004: Mesh2_marquee_side_scallop_1_1_Model_002
@@ -177,6 +230,23 @@ ModelImporter:
     3300080: Curve_000
     3300082: Curve_001
     3300084: Curve_002
+    3300086: BezierCurve
+    3300088: BezierCurve_001
+    3300090: BezierCurve_002
+    3300092: BezierCurve_003
+    3300094: BezierCurve_004
+    3300096: BezierCurve_005
+    3300098: BezierCurve_006
+    3300100: BezierCurve_007
+    3300102: Curve_003
+    3300104: Curve_004
+    3300106: 8_Neon
+    3300108: Letter_neon
+    3300110: Neon_Circle
+    3300112: Red_neon_MeshPart0
+    3300114: Red_neon_MeshPart1
+    3300116: Red_neon_MeshPart2
+    3300118: White_Neon
     4300000: Mesh6_marquee_side_scallop1_Model_002
     4300002: Mesh2_marquee_side_scallop_1_1_Model_002
     4300004: Mesh3_marquee_side_scallop_1_1_Model_002
@@ -219,6 +289,23 @@ ModelImporter:
     4300078: Curve_000
     4300080: Curve_002
     4300082: Curve_001
+    4300084: BezierCurve_003
+    4300086: BezierCurve_002
+    4300088: BezierCurve_001
+    4300090: BezierCurve
+    4300092: Curve_004
+    4300094: Curve_003
+    4300096: BezierCurve_007
+    4300098: BezierCurve_006
+    4300100: BezierCurve_005
+    4300102: BezierCurve_004
+    4300104: Neon_Circle
+    4300106: Letter_neon
+    4300108: White_Neon
+    4300110: 8_Neon
+    4300112: Red_neon_MeshPart0
+    4300114: Red_neon_MeshPart1
+    4300116: Red_neon_MeshPart2
     7400000: Default Take
     9500000: //RootNode
   materials:

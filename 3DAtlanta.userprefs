@@ -1,15 +1,10 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Environment\DayTimeControl.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Editor\AutoDecal.cs">
     <Files>
-      <File FileName="Assets\Scripts\Environment\AdjustLightImportance.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment\DayTimeControl.cs" Line="10" Column="3" />
-      <File FileName="Assets\Scripts\Misc\GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Environment\ChronolensArea.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\ChronolensController.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\OVRControllerCheck.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Misc\GrabbableObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Player\Look.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\AutoDecal.cs" Line="59" Column="20" />
+      <File FileName="Assets\Editor\ReplaceSelection.cs" Line="1" Column="1" />
+      <File FileName="Assets\Editor\MoveToLatLng.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -1,9 +1,4 @@
-﻿/* This wizard will replace a selection with an object or prefab.
- * Scene objects will be cloned (destroying their prefab links).
- * Original coding by 'yesfish', nabbed from Unity Forums
- * 'keep parent' added by Dave A (also removed 'rotation' option, using localRotation
- */
-using UnityEngine;
+﻿using UnityEngine;
 using System.Text.RegularExpressions;
 using System;
 
@@ -16,7 +11,7 @@ using System.Collections;
 public class MoveToLatLng : ScriptableWizard {
 	public string latLngString;
 
-    [MenuItem("GameObject/Move to Lat Lng")]
+	[MenuItem("Custom/Move to Lat Lng")]
     static void CreateWizard() {
         ScriptableWizard.DisplayWizard(
 			"Move to Lat Lng", typeof(MoveToLatLng), "Move");

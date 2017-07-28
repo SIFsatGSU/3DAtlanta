@@ -5126,6 +5126,7 @@ ModelImporter:
     110236: Street_Light_5236
     110238: Street_Light_5237
     110240: Street_Light_5238
+    110242: Street_mesh
     400000: //RootNode
     400002: ShapeIndexedFaceSet
     400004: Street
@@ -10247,15 +10248,19 @@ ModelImporter:
     410236: Street_Light_5236
     410238: Street_Light_5237
     410240: Street_Light_5238
+    410242: Street_mesh
     2300000: ShapeIndexedFaceSet
     2300002: Street
     2300004: StreetSkeleton
+    2300006: Street_mesh
     3300000: ShapeIndexedFaceSet
     3300002: Street
     3300004: StreetSkeleton
+    3300006: Street_mesh
     4300000: ShapeIndexedFaceSet
     4300002: Street
     4300004: StreetSkeleton
+    4300006: Street_mesh
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -10268,6 +10273,8 @@ ModelImporter:
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 

@@ -18,11 +18,48 @@ public class AutoDecal : ScriptableWizard {
 	public float minScale, maxScale;
 	public float minArea, maxArea;
 
+	static public GameObject objectToDecalC;
+	static public Transform[] boundsC = new Transform[4];
+	static public Material[] materialsC;
+	static public GameObject[] decalPrefabsC;
+	static public float cornerAvoidC; // 0: decal can touch corners, 1 decals always in the middle.
+	static public int minDecalsC, maxDecalsC;
+	static public float minScaleC, maxScaleC;
+	static public float minAreaC, maxAreaC;
+
 	private const float SURFACE_DISTANCE = .006f;
 	[MenuItem("Custom/Auto Decal")]
 	static void CreateWizard() {
 		ScriptableWizard.DisplayWizard(
 			"Auto Decal", typeof(AutoDecal), "Apply");
+	}
+
+	public AutoDecal() {
+		objectToDecal = objectToDecalC;
+		bounds = boundsC;
+		materials = materialsC;
+		decalPrefabs = decalPrefabsC;
+		cornerAvoid = cornerAvoidC;
+		minDecals = minDecalsC;
+		maxDecals = maxDecalsC;
+		minScale = minScaleC;
+		maxScale = maxScaleC;
+		minArea = minAreaC;
+		maxArea = maxAreaC;
+	}
+
+	void OnWizardUpdate() {
+		objectToDecalC = objectToDecal;
+		boundsC = bounds;
+		materialsC = materials;
+		decalPrefabsC = decalPrefabs;
+		cornerAvoidC = cornerAvoid;
+		minDecalsC = minDecals;
+		maxDecalsC = maxDecals;
+		minScaleC = minScale;
+		maxScaleC = maxScale;
+		minAreaC = minArea;
+		maxAreaC = maxArea;
 	}
 
 	void OnWizardCreate() {
@@ -43,25 +80,24 @@ public class AutoDecal : ScriptableWizard {
 				}
 			}
 		} else {
-			//Debug.Log ("woah");
 			Decal (mesh.triangles, vertices, objectToDecal.transform);
 		}
 	}
 
 	void Decal(int[] triangles, Vector3[] vertices, Transform parent) {
-		float minA = float.MaxValue, maxA = float.MinValue;
+		//float minA = float.MaxValue, maxA = float.MinValue;
 		for (int i = 0; i < triangles.Length; i += 3) {
-			Vector3 v1 = parent.TransformPoint(vertices [i]);
-			Vector3 v2 = parent.TransformPoint(vertices [i + 1]);
-			Vector3 v3 = parent.TransformPoint(vertices [i + 2]);
+			Vector3 v1 = parent.TransformPoint(vertices [triangles[i]]);
+			Vector3 v2 = parent.TransformPoint(vertices [triangles[i + 1]]);
+			Vector3 v3 = parent.TransformPoint(vertices [triangles[i + 2]]);
 			Vector3 normal = Vector3.Cross (v2 - v1, v3 - v1);
 			float area = normal.magnitude;
-			if (area < minA)
+			/*if (area < minA)
 				minA = area;
 			if (area > maxA)
-				maxA = area;
+				maxA = area;*/
 			
-			/*if (area < minArea)
+			if (area < minArea)
 				continue;
 			
 			int numOfDecal = (int) (Mathf.Lerp(minDecals, maxDecals,
@@ -87,7 +123,7 @@ public class AutoDecal : ScriptableWizard {
 				if (!inBound)
 					continue;
 
-				GameObject newDecal = GameObject.Instantiate (
+				GameObject newDecal = (GameObject) PrefabUtility.InstantiatePrefab (
 					decalPrefabs [UnityEngine.Random.Range (0, decalPrefabs.Length)]);
 				newDecal.transform.position = position;
 				newDecal.transform.localScale *= UnityEngine.Random.Range (minScale, maxScale);
@@ -95,8 +131,8 @@ public class AutoDecal : ScriptableWizard {
 						newDecal.transform.rotation = Quaternion.FromToRotation (Vector3.up, normal)
 					* Quaternion.Euler(new Vector3(0, UnityEngine.Random.Range(0, 360),0))
 					* newDecal.transform.rotation;
-			}*/
+			}
 		}
-		Debug.Log (minA + ", " + maxA);
+		//Debug.Log (minA + ", " + maxA);
 	}
 }

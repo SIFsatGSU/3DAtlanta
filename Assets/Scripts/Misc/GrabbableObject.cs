@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class GrabbableObject : MonoBehaviour {
 	public Transform grabbingPoint;
+	public Transform mirroredGrabbingPoint;
 	public float grabbingPinky, grabbingRing, grabbingMiddle, grabbingIndex, grabbingThumb;
 
 	private Transform handPoint = null;
 	private bool mirrorX; // Position of grab point is mirrored on the X axis if grabbed by left hand.
-	private Transform mirroredGrabbingPoint;
 
 	public float velocityAlpha;
 	public float angularVelocityAlpha;
@@ -23,24 +23,25 @@ public class GrabbableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		// Create mirrored grabbing point for the left hand.
-		GameObject mirroredGrabbingPointContainer = new GameObject ("Mirrored Grabbing Point Container");
-		GameObject mirroredGrabbingPointObject = new GameObject ("Mirrored Grabbing Point");
-		mirroredGrabbingPointObject.transform.position = grabbingPoint.transform.position;
-		mirroredGrabbingPointObject.transform.rotation = grabbingPoint.transform.rotation;
+		if (mirroredGrabbingPoint == null) {
+			// Create mirrored grabbing point for the left hand.
+			GameObject mirroredGrabbingPointContainer = new GameObject ("Mirrored Grabbing Point Container");
+			GameObject mirroredGrabbingPointObject = new GameObject ("Mirrored Grabbing Point");
+			mirroredGrabbingPointObject.transform.position = grabbingPoint.transform.position;
+			mirroredGrabbingPointObject.transform.rotation = grabbingPoint.transform.rotation;
 
-		mirroredGrabbingPointContainer.transform.parent = transform;
-		mirroredGrabbingPointContainer.transform.localPosition = Vector3.zero;
-		mirroredGrabbingPointContainer.transform.localRotation = Quaternion.identity;
+			mirroredGrabbingPointContainer.transform.parent = transform;
+			mirroredGrabbingPointContainer.transform.localPosition = Vector3.zero;
+			mirroredGrabbingPointContainer.transform.localRotation = Quaternion.identity;
 
-		mirroredGrabbingPointContainer.transform.localScale = new Vector3 (1, 1, 1);
-		mirroredGrabbingPointObject.transform.parent = mirroredGrabbingPointContainer.transform;
-		mirroredGrabbingPointContainer.transform.localScale = new Vector3 (-1, 1, 1);
-		mirroredGrabbingPointObject.transform.parent = transform;
-		GameObject.Destroy (mirroredGrabbingPointContainer);
-		mirroredGrabbingPoint = mirroredGrabbingPointObject.transform;
-		// End creating mirrored grabbing point.
-
+			mirroredGrabbingPointContainer.transform.localScale = new Vector3 (1, 1, 1);
+			mirroredGrabbingPointObject.transform.parent = mirroredGrabbingPointContainer.transform;
+			mirroredGrabbingPointContainer.transform.localScale = new Vector3 (-1, 1, 1);
+			mirroredGrabbingPointObject.transform.parent = transform;
+			GameObject.Destroy (mirroredGrabbingPointContainer);
+			mirroredGrabbingPoint = mirroredGrabbingPointObject.transform;
+			// End creating mirrored grabbing point.
+		}
 		if (enableMovementTracking) {
 			rigidBody = GetComponent<Rigidbody> ();
 		}

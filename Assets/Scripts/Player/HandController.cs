@@ -10,6 +10,8 @@ public class HandController : MonoBehaviour {
 	public float grabThreshold;
 	public Collider bodyCollider;
 	public Collider feetCollider;
+	public Transform palmDirection; // To calculate grabbing potential.
+	public int grabbableIndicatorIndex; // To seperate indicators of left and right hand on the object.
 
 	private OVRInput.RawNearTouch triggerTouch, thumbTouch;
 	private OVRInput.RawAxis1D triggerAxis, fistAxis;
@@ -76,16 +78,19 @@ public class HandController : MonoBehaviour {
 
 				GameObject candidateGrabbableObject = null;
 				if (grabObjectSet.Count > 0) {
-					float minDistance = float.MaxValue;
-					float currentDistance;
+					float maxPotential = float.MinValue;
+					float potential;
+					Vector3 deltaPosition;
 					foreach (GameObject currentObject in grabObjectSet) {
-						currentDistance = (currentObject.transform.position - transform.position).sqrMagnitude;
-						if (currentDistance < minDistance && !currentObject.GetComponent<GrabbableObject>().beingGrabbed) {
-							if (candidateGrabbableObject != null)
-								candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication = false;
+						deltaPosition = currentObject.transform.position - transform.position;
+						currentObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = false;
+						potential = Vector3.Dot (-palmDirection.forward, deltaPosition.normalized);
+						if (potential > maxPotential && !currentObject.GetComponent<GrabbableObject>().beingGrabbed) {
+							if (candidateGrabbableObject != null) 
+								candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = false;
 							candidateGrabbableObject = currentObject;
-							candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication = true;
-							minDistance = currentDistance;
+							candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = true;
+							maxPotential = potential;
 						}
 					}
 				}
@@ -95,7 +100,7 @@ public class HandController : MonoBehaviour {
 						currentlyGrabbed = candidateGrabbableObject;
 						currentGrabbableObject = currentlyGrabbed.GetComponent<GrabbableObject> ();
 						if (!currentGrabbableObject.beingGrabbed) {
-							currentGrabbableObject.grabbableIndication = false;
+							currentGrabbableObject.grabbableIndication[grabbableIndicatorIndex] = false;
 							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand, this);
 							grabMode = true;
 
@@ -145,7 +150,7 @@ public class HandController : MonoBehaviour {
 	void OnTriggerExit(Collider col) {
 		if (grabObjectSet.Contains(col.gameObject)) {
 			grabObjectSet.Remove(col.gameObject);
-			col.gameObject.GetComponent<GrabbableObject> ().grabbableIndication = false;
+			col.gameObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = false;
 		}
 	}
 }

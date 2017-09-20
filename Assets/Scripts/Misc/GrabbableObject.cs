@@ -12,8 +12,8 @@ public class GrabbableObject : MonoBehaviour {
 	public float angularVelocityAlpha;
 	public bool enableMovementTracking;
 
-	//[HideInInspector]
-	public bool grabbableIndication = false;
+	[HideInInspector]
+	public bool[] grabbableIndication;
 
 	private Transform handPoint = null;
 	private bool mirrorX; // Position of grab point is mirrored on the X axis if grabbed by left hand.
@@ -27,11 +27,12 @@ public class GrabbableObject : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		grabbableIndication = new bool[2];
 		if (leftHandGrabbingPoint == null) {
 			// Create mirrored grabbing point for the left hand if not specified.
 			// Assuming object is symmetrical about the X axis.
-			GameObject leftHandGrabbingPointContainer = new GameObject ("Mirrored Grabbing Point Container");
-			GameObject leftHandGrabbingPointObject = new GameObject ("Mirrored Grabbing Point");
+			GameObject leftHandGrabbingPointContainer = new GameObject ("Left Hand Grabbing Point Container");
+			GameObject leftHandGrabbingPointObject = new GameObject ("Left Hand Grabbing Point");
 			leftHandGrabbingPointObject.transform.position = grabbingPoint.transform.position;
 			leftHandGrabbingPointObject.transform.rotation = grabbingPoint.transform.rotation;
 
@@ -54,8 +55,8 @@ public class GrabbableObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (grabbableIndicator != null && grabbableIndicator.enabled != grabbableIndication) {
-			grabbableIndicator.enabled = grabbableIndication;
+		if (grabbableIndicator != null && grabbableIndicator.enabled != (grabbableIndication[0] || grabbableIndication[1])) {
+			grabbableIndicator.enabled = (grabbableIndication[0] || grabbableIndication[1]);
 		}
 		if (beingGrabbed) {
 			SnapToHand ();

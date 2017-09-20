@@ -42,7 +42,7 @@ public class HandAnimator : MonoBehaviour {
 		}
 	}
 
-	public void SnapAnimations() {
+	public void SnapFingers() {
 		currentPinky = pinky;
 		currentRing = ring;
 		currentMiddle = middle;

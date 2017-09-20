@@ -5,14 +5,18 @@ using UnityEngine;
 public class GrabbableObject : MonoBehaviour {
 	public Transform grabbingPoint;
 	public Transform leftHandGrabbingPoint;
+	public Renderer grabbableIndicator;
 	public float grabbingPinky, grabbingRing, grabbingMiddle, grabbingIndex, grabbingThumb;
-
-	private Transform handPoint = null;
-	private bool mirrorX; // Position of grab point is mirrored on the X axis if grabbed by left hand.
 
 	public float velocityAlpha;
 	public float angularVelocityAlpha;
 	public bool enableMovementTracking;
+
+	//[HideInInspector]
+	public bool grabbableIndication = false;
+
+	private Transform handPoint = null;
+	private bool mirrorX; // Position of grab point is mirrored on the X axis if grabbed by left hand.
 
 	private Vector3 lastPosition;
 	private Quaternion lastRotation;
@@ -24,7 +28,8 @@ public class GrabbableObject : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if (leftHandGrabbingPoint == null) {
-			// Create mirrored grabbing point for the left hand.
+			// Create mirrored grabbing point for the left hand if not specified.
+			// Assuming object is symmetrical about the X axis.
 			GameObject leftHandGrabbingPointContainer = new GameObject ("Mirrored Grabbing Point Container");
 			GameObject leftHandGrabbingPointObject = new GameObject ("Mirrored Grabbing Point");
 			leftHandGrabbingPointObject.transform.position = grabbingPoint.transform.position;
@@ -49,6 +54,9 @@ public class GrabbableObject : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (grabbableIndicator != null && grabbableIndicator.enabled != grabbableIndication) {
+			grabbableIndicator.enabled = grabbableIndication;
+		}
 		if (beingGrabbed) {
 			SnapToHand ();
 			if (enableMovementTracking) {

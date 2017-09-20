@@ -53,6 +53,7 @@ public class HandController : MonoBehaviour {
 			transform.localRotation = InputTracking.GetLocalRotation (hand);
 
 			bool currentGrab = OVRInput.Get (fistAxis) >= grabThreshold;
+
 			if (!grabMode) {
 				if (!OVRInput.Get (triggerTouch)) {
 					handAnimator.index = 0;
@@ -73,20 +74,28 @@ public class HandController : MonoBehaviour {
 					handAnimator.thumb = 0;
 				}
 
+				GameObject candidateGrabbableObject = null;
+				if (grabObjectSet.Count > 0) {
+					float minDistance = float.MaxValue;
+					float currentDistance;
+					foreach (GameObject currentObject in grabObjectSet) {
+						currentDistance = (currentObject.transform.position - transform.position).sqrMagnitude;
+						if (currentDistance < minDistance && !currentObject.GetComponent<GrabbableObject>().beingGrabbed) {
+							if (candidateGrabbableObject != null)
+								candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication = false;
+							candidateGrabbableObject = currentObject;
+							candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication = true;
+							minDistance = currentDistance;
+						}
+					}
+				}
 
 				if (currentGrab && !previouslyGrabbed) {
-					if (grabObjectSet.Count > 0) {
-						float minDistance = float.MaxValue;
-						float currentDistance;
-						foreach (GameObject currentObject in grabObjectSet) {
-							currentDistance = (currentObject.transform.position - transform.position).sqrMagnitude;
-							if (currentDistance < minDistance) {
-								currentlyGrabbed = currentObject;
-								minDistance = currentDistance;
-							}
-						}
+					if (candidateGrabbableObject != null) {
+						currentlyGrabbed = candidateGrabbableObject;
 						currentGrabbableObject = currentlyGrabbed.GetComponent<GrabbableObject> ();
 						if (!currentGrabbableObject.beingGrabbed) {
+							currentGrabbableObject.grabbableIndication = false;
 							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand, this);
 							grabMode = true;
 
@@ -96,7 +105,7 @@ public class HandController : MonoBehaviour {
 							handAnimator.middle = currentGrabbableObject.grabbingMiddle;
 							handAnimator.index = currentGrabbableObject.grabbingIndex;
 							handAnimator.thumb = currentGrabbableObject.grabbingThumb;
-							handAnimator.SnapAnimations ();
+							handAnimator.SnapFingers ();
 						}
 					}
 				}
@@ -136,6 +145,7 @@ public class HandController : MonoBehaviour {
 	void OnTriggerExit(Collider col) {
 		if (grabObjectSet.Contains(col.gameObject)) {
 			grabObjectSet.Remove(col.gameObject);
+			col.gameObject.GetComponent<GrabbableObject> ().grabbableIndication = false;
 		}
 	}
 }

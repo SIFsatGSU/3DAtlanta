@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.VR;
 
 public class HandController : MonoBehaviour {
+	private const float MIN_POTENTIAL = -.5f;
+
 	public VRNode hand;
 	HandAnimator handAnimator;
 	public float fingerAnimationStart;
@@ -11,7 +13,7 @@ public class HandController : MonoBehaviour {
 	public Collider bodyCollider;
 	public Collider feetCollider;
 	public Transform palmDirection; // To calculate grabbing potential.
-	public int grabbableIndicatorIndex; // To seperate indicators of left and right hand on the object.
+	private int grabbableIndicatorIndex; // To seperate indicators of left and right hand on the object.
 
 	private OVRInput.RawNearTouch triggerTouch, thumbTouch;
 	private OVRInput.RawAxis1D triggerAxis, fistAxis;
@@ -22,7 +24,6 @@ public class HandController : MonoBehaviour {
 	private GameObject currentlyGrabbed;
 	private GrabbableObject currentGrabbableObject;
 	private float grabbingPinky, grabbingRing, grabbingMiddle, grabbingIndex, grabbingThumb;
-
 	// Use this for initialization
 	void Start () {
 		// Ignore collision with body.
@@ -36,12 +37,14 @@ public class HandController : MonoBehaviour {
 			triggerAxis = OVRInput.RawAxis1D.RIndexTrigger;
 			fistAxis = OVRInput.RawAxis1D.RHandTrigger;
 			hapticsChannel = OVRHaptics.RightChannel;
+			grabbableIndicatorIndex = 0;
 		} else if (hand == VRNode.LeftHand) {
 			triggerTouch = OVRInput.RawNearTouch.LIndexTrigger;
 			thumbTouch = OVRInput.RawNearTouch.LThumbButtons;
 			triggerAxis = OVRInput.RawAxis1D.LIndexTrigger;
 			fistAxis = OVRInput.RawAxis1D.LHandTrigger;
 			hapticsChannel = OVRHaptics.LeftChannel;
+			grabbableIndicatorIndex = 1;
 		}
 	}
 	
@@ -76,6 +79,7 @@ public class HandController : MonoBehaviour {
 					handAnimator.thumb = 0;
 				}
 
+				// Check for grabbable object candidates.
 				GameObject candidateGrabbableObject = null;
 				if (grabObjectSet.Count > 0) {
 					float maxPotential = float.MinValue;
@@ -85,7 +89,7 @@ public class HandController : MonoBehaviour {
 						deltaPosition = currentObject.transform.position - transform.position;
 						currentObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = false;
 						potential = Vector3.Dot (-palmDirection.forward, deltaPosition.normalized);
-						if (potential > maxPotential && !currentObject.GetComponent<GrabbableObject>().beingGrabbed) {
+						if (potential >= MIN_POTENTIAL && potential > maxPotential && !currentObject.GetComponent<GrabbableObject>().beingGrabbed) {
 							if (candidateGrabbableObject != null) 
 								candidateGrabbableObject.GetComponent<GrabbableObject> ().grabbableIndication[grabbableIndicatorIndex] = false;
 							candidateGrabbableObject = currentObject;
@@ -95,6 +99,7 @@ public class HandController : MonoBehaviour {
 					}
 				}
 
+				// Start grabbing.
 				if (currentGrab && !previouslyGrabbed) {
 					if (candidateGrabbableObject != null) {
 						currentlyGrabbed = candidateGrabbableObject;
@@ -117,16 +122,17 @@ public class HandController : MonoBehaviour {
 
 			} else {
 				// For testing
-				handAnimator.pinky = currentGrabbableObject.grabbingPinky;
+				/*handAnimator.pinky = currentGrabbableObject.grabbingPinky;
 				handAnimator.ring = currentGrabbableObject.grabbingRing;
 				handAnimator.middle = currentGrabbableObject.grabbingMiddle;
 				handAnimator.index = currentGrabbableObject.grabbingIndex;
-				handAnimator.thumb = currentGrabbableObject.grabbingThumb;
+				handAnimator.thumb = currentGrabbableObject.grabbingThumb;*/
 				// ^ End for testing
 
+				currentGrabbableObject.HandUpdate();
 				if (!currentGrab && previouslyGrabbed) {
 					if (currentlyGrabbed != null) {
-						currentlyGrabbed.GetComponent<GrabbableObject> ().Release ();
+						currentGrabbableObject.Release ();
 						currentlyGrabbed = null;
 					}
 					grabMode = false;

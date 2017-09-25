@@ -58,19 +58,21 @@ public class GrabbableObject : MonoBehaviour {
 		if (grabbableIndicator != null && grabbableIndicator.enabled != (grabbableIndication[0] || grabbableIndication[1])) {
 			grabbableIndicator.enabled = (grabbableIndication[0] || grabbableIndication[1]);
 		}
-		if (beingGrabbed) {
-			SnapToHand ();
-			if (enableMovementTracking) {
-				Vector3 targetVelocity = (transform.localPosition - lastPosition) / Time.deltaTime;
-				Quaternion deltaRotation = transform.rotation * Quaternion.Inverse (lastRotation);
-				Vector3 deltaEuler = deltaRotation.eulerAngles;
-				Vector3 targetAngularVelocity = new Vector3 (Mathf.DeltaAngle (0, deltaEuler.x), Mathf.DeltaAngle (0, deltaEuler.y), Mathf.DeltaAngle (0, deltaEuler.z))
-				                               * Mathf.PI / 180 / Time.deltaTime;
-				currentVelocity = (1 - velocityAlpha) * rigidBody.velocity + velocityAlpha * targetVelocity;
-				currentAngularVelocity = (1 - angularVelocityAlpha) * rigidBody.angularVelocity + angularVelocityAlpha * targetAngularVelocity;
-				lastPosition = transform.position;
-				lastRotation = transform.rotation;
-			}
+	}
+
+	// To be called by the hand controller to synchronize with the hand movement.
+	public void HandUpdate() {
+		SnapToHand ();
+		if (enableMovementTracking) {
+			Vector3 targetVelocity = (transform.localPosition - lastPosition) / Time.deltaTime;
+			Quaternion deltaRotation = transform.rotation * Quaternion.Inverse (lastRotation);
+			Vector3 deltaEuler = deltaRotation.eulerAngles;
+			Vector3 targetAngularVelocity = new Vector3 (Mathf.DeltaAngle (0, deltaEuler.x), Mathf.DeltaAngle (0, deltaEuler.y), Mathf.DeltaAngle (0, deltaEuler.z))
+				* Mathf.PI / 180 / Time.deltaTime;
+			currentVelocity = (1 - velocityAlpha) * rigidBody.velocity + velocityAlpha * targetVelocity;
+			currentAngularVelocity = (1 - angularVelocityAlpha) * rigidBody.angularVelocity + angularVelocityAlpha * targetAngularVelocity;
+			lastPosition = transform.position;
+			lastRotation = transform.rotation;
 		}
 	}
 

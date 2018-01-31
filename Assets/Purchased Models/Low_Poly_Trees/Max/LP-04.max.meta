@@ -3,7 +3,7 @@ guid: 1ee62c0a603d51a4dbbd190cfa25ae62
 timeCreated: 1461736206
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: LP-02-01
     100002: LP-02-01_MeshPart0
@@ -25,6 +25,20 @@ ModelImporter:
     100034: LP-02-05_MeshPart0
     100036: LP-02-05_MeshPart1
     100038: //RootNode
+    100040: LP-04-01
+    100042: LP-04-01_MeshPart0
+    100044: LP-04-01_MeshPart1
+    100046: LP-04-02
+    100048: LP-04-02_MeshPart0
+    100050: LP-04-02_MeshPart1
+    100052: LP-04-03
+    100054: LP-04-03_MeshPart0
+    100056: LP-04-03_MeshPart1
+    100058: LP-04-03_MeshPart2
+    100060: LP-04-04
+    100062: LP-04-05
+    100064: LP-04-05_MeshPart0
+    100066: LP-04-05_MeshPart1
     400000: LP-02-01
     400002: LP-02-01_MeshPart0
     400004: LP-02-01_MeshPart1
@@ -45,6 +59,20 @@ ModelImporter:
     400034: LP-02-05_MeshPart0
     400036: LP-02-05_MeshPart1
     400038: //RootNode
+    400040: LP-04-01
+    400042: LP-04-01_MeshPart0
+    400044: LP-04-01_MeshPart1
+    400046: LP-04-02
+    400048: LP-04-02_MeshPart0
+    400050: LP-04-02_MeshPart1
+    400052: LP-04-03
+    400054: LP-04-03_MeshPart0
+    400056: LP-04-03_MeshPart1
+    400058: LP-04-03_MeshPart2
+    400060: LP-04-04
+    400062: LP-04-05
+    400064: LP-04-05_MeshPart0
+    400066: LP-04-05_MeshPart1
     2300000: LP-02-01_MeshPart0
     2300002: LP-02-01_MeshPart1
     2300004: LP-02-01_MeshPart2
@@ -59,6 +87,16 @@ ModelImporter:
     2300022: LP-02-04_MeshPart2
     2300024: LP-02-05_MeshPart0
     2300026: LP-02-05_MeshPart1
+    2300028: LP-04-01_MeshPart0
+    2300030: LP-04-01_MeshPart1
+    2300032: LP-04-02_MeshPart0
+    2300034: LP-04-02_MeshPart1
+    2300036: LP-04-03_MeshPart0
+    2300038: LP-04-03_MeshPart1
+    2300040: LP-04-03_MeshPart2
+    2300042: LP-04-04
+    2300044: LP-04-05_MeshPart0
+    2300046: LP-04-05_MeshPart1
     3300000: LP-02-01_MeshPart0
     3300002: LP-02-01_MeshPart1
     3300004: LP-02-01_MeshPart2
@@ -73,6 +111,16 @@ ModelImporter:
     3300022: LP-02-04_MeshPart2
     3300024: LP-02-05_MeshPart0
     3300026: LP-02-05_MeshPart1
+    3300028: LP-04-01_MeshPart0
+    3300030: LP-04-01_MeshPart1
+    3300032: LP-04-02_MeshPart0
+    3300034: LP-04-02_MeshPart1
+    3300036: LP-04-03_MeshPart0
+    3300038: LP-04-03_MeshPart1
+    3300040: LP-04-03_MeshPart2
+    3300042: LP-04-04
+    3300044: LP-04-05_MeshPart0
+    3300046: LP-04-05_MeshPart1
     4300000: LP-02-01_MeshPart0
     4300002: LP-02-01_MeshPart1
     4300004: LP-02-01_MeshPart2
@@ -87,27 +135,58 @@ ModelImporter:
     4300022: LP-02-04_MeshPart2
     4300024: LP-02-05_MeshPart0
     4300026: LP-02-05_MeshPart1
+    4300028: LP-04-01_MeshPart0
+    4300030: LP-04-01_MeshPart1
+    4300032: LP-04-02_MeshPart0
+    4300034: LP-04-02_MeshPart1
+    4300036: LP-04-03_MeshPart0
+    4300038: LP-04-03_MeshPart1
+    4300040: LP-04-03_MeshPart2
+    4300042: LP-04-04
+    4300044: LP-04-05_MeshPart0
+    4300046: LP-04-05_MeshPart1
     9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131375'
+    second: {fileID: 2100000, guid: 34c3a9d7814dfbe478b9e38304cd935d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131376'
+    second: {fileID: 2100000, guid: d815ec4342d61554f8a2981f4bdad89b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131377'
+    second: {fileID: 2100000, guid: fdfec58a058d9a44e90a198c3fbed7ea, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -115,13 +194,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -131,9 +215,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -144,7 +230,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

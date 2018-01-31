@@ -3,28 +3,110 @@ guid: 56be56d1cb21ac649a20a4177449954c
 timeCreated: 1461736331
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName: {}
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: LP-03-01
+    100004: LP-03-01_MeshPart0
+    100006: LP-03-01_MeshPart1
+    100008: LP-03-02
+    100010: LP-03-02_MeshPart0
+    100012: LP-03-02_MeshPart1
+    100014: LP-03-03
+    100016: LP-03-03_MeshPart0
+    100018: LP-03-03_MeshPart1
+    100020: LP-03-03_MeshPart2
+    100022: LP-03-04
+    100024: LP-03-05
+    100026: LP-03-05_MeshPart0
+    100028: LP-03-05_MeshPart1
+    400000: //RootNode
+    400002: LP-03-01
+    400004: LP-03-01_MeshPart0
+    400006: LP-03-01_MeshPart1
+    400008: LP-03-02
+    400010: LP-03-02_MeshPart0
+    400012: LP-03-02_MeshPart1
+    400014: LP-03-03
+    400016: LP-03-03_MeshPart0
+    400018: LP-03-03_MeshPart1
+    400020: LP-03-03_MeshPart2
+    400022: LP-03-04
+    400024: LP-03-05
+    400026: LP-03-05_MeshPart0
+    400028: LP-03-05_MeshPart1
+    2300000: LP-03-01_MeshPart0
+    2300002: LP-03-01_MeshPart1
+    2300004: LP-03-02_MeshPart0
+    2300006: LP-03-02_MeshPart1
+    2300008: LP-03-03_MeshPart0
+    2300010: LP-03-03_MeshPart1
+    2300012: LP-03-03_MeshPart2
+    2300014: LP-03-04
+    2300016: LP-03-05_MeshPart0
+    2300018: LP-03-05_MeshPart1
+    3300000: LP-03-01_MeshPart0
+    3300002: LP-03-01_MeshPart1
+    3300004: LP-03-02_MeshPart0
+    3300006: LP-03-02_MeshPart1
+    3300008: LP-03-03_MeshPart0
+    3300010: LP-03-03_MeshPart1
+    3300012: LP-03-03_MeshPart2
+    3300014: LP-03-04
+    3300016: LP-03-05_MeshPart0
+    3300018: LP-03-05_MeshPart1
+    4300000: LP-03-01_MeshPart0
+    4300002: LP-03-01_MeshPart1
+    4300004: LP-03-02_MeshPart0
+    4300006: LP-03-02_MeshPart1
+    4300008: LP-03-03_MeshPart0
+    4300010: LP-03-03_MeshPart1
+    4300012: LP-03-03_MeshPart2
+    4300014: LP-03-04
+    4300016: LP-03-05_MeshPart0
+    4300018: LP-03-05_MeshPart1
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #12877'
+    second: {fileID: 2100000, guid: e6822ecf4a31f7e469009aa6f8c6797e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #12878'
+    second: {fileID: 2100000, guid: add73b06a43a2654f8c43ffedf055afd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #12879'
+    second: {fileID: 2100000, guid: 52d2b07744cd85d41af347b5006397d2, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -32,13 +114,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -48,9 +135,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -61,7 +150,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

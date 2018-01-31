@@ -24,10 +24,12 @@ public class GrabbableObject : MonoBehaviour {
 	private Vector3 currentAngularVelocity;
 	private Rigidbody rigidBody;
 	private HandController grabbingHand;
+    private Transform originalParent;
 
 	// Use this for initialization
 	void Start () {
-		grabbableIndication = new bool[2];
+        originalParent = transform.parent;
+        grabbableIndication = new bool[2];
 		if (leftHandGrabbingPoint == null) {
 			// Create mirrored grabbing point for the left hand if not specified.
 			// Assuming object is symmetrical about the X axis.
@@ -64,7 +66,7 @@ public class GrabbableObject : MonoBehaviour {
 	public void HandUpdate() {
 		SnapToHand ();
 		if (enableMovementTracking) {
-			Vector3 targetVelocity = (transform.localPosition - lastPosition) / Time.deltaTime;
+			Vector3 targetVelocity = (transform.position - lastPosition) / Time.deltaTime;
 			Quaternion deltaRotation = transform.rotation * Quaternion.Inverse (lastRotation);
 			Vector3 deltaEuler = deltaRotation.eulerAngles;
 			Vector3 targetAngularVelocity = new Vector3 (Mathf.DeltaAngle (0, deltaEuler.x), Mathf.DeltaAngle (0, deltaEuler.y), Mathf.DeltaAngle (0, deltaEuler.z))
@@ -91,6 +93,7 @@ public class GrabbableObject : MonoBehaviour {
 		grabbingHand = hand;
 
 		SnapToHand ();
+        //transform.parent = hand.gameObject.transform;
 		if (enableMovementTracking) {
 			lastPosition = transform.position;
 			lastRotation = transform.rotation;
@@ -101,7 +104,8 @@ public class GrabbableObject : MonoBehaviour {
 	}
 
 	public void Release() {
-		handPoint = null;
+        //transform.parent = originalParent;
+        handPoint = null;
 		grabbingHand = null;
 
 		if (enableMovementTracking) {

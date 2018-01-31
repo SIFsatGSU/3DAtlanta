@@ -3,28 +3,147 @@ guid: 7f9a291919187af4e937879aa1dc5370
 timeCreated: 1461736456
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName: {}
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: LP-08-01
+    100004: LP-08-01_MeshPart0
+    100006: LP-08-01_MeshPart1
+    100008: LP-08-01_MeshPart2
+    100010: LP-08-01_MeshPart3
+    100012: LP-08-02
+    100014: LP-08-02_MeshPart0
+    100016: LP-08-02_MeshPart1
+    100018: LP-08-02_MeshPart2
+    100020: LP-08-02_MeshPart3
+    100022: LP-08-02_MeshPart4
+    100024: LP-08-03
+    100026: LP-08-03_MeshPart0
+    100028: LP-08-03_MeshPart1
+    100030: LP-08-03_MeshPart2
+    100032: LP-08-04
+    100034: LP-08-04_MeshPart0
+    100036: LP-08-04_MeshPart1
+    100038: LP-08-05
+    100040: LP-08-05_MeshPart0
+    100042: LP-08-05_MeshPart1
+    100044: LP-08-05_MeshPart2
+    400000: //RootNode
+    400002: LP-08-01
+    400004: LP-08-01_MeshPart0
+    400006: LP-08-01_MeshPart1
+    400008: LP-08-01_MeshPart2
+    400010: LP-08-01_MeshPart3
+    400012: LP-08-02
+    400014: LP-08-02_MeshPart0
+    400016: LP-08-02_MeshPart1
+    400018: LP-08-02_MeshPart2
+    400020: LP-08-02_MeshPart3
+    400022: LP-08-02_MeshPart4
+    400024: LP-08-03
+    400026: LP-08-03_MeshPart0
+    400028: LP-08-03_MeshPart1
+    400030: LP-08-03_MeshPart2
+    400032: LP-08-04
+    400034: LP-08-04_MeshPart0
+    400036: LP-08-04_MeshPart1
+    400038: LP-08-05
+    400040: LP-08-05_MeshPart0
+    400042: LP-08-05_MeshPart1
+    400044: LP-08-05_MeshPart2
+    2300000: LP-08-01_MeshPart0
+    2300002: LP-08-01_MeshPart1
+    2300004: LP-08-01_MeshPart2
+    2300006: LP-08-01_MeshPart3
+    2300008: LP-08-02_MeshPart0
+    2300010: LP-08-02_MeshPart1
+    2300012: LP-08-02_MeshPart2
+    2300014: LP-08-02_MeshPart3
+    2300016: LP-08-02_MeshPart4
+    2300018: LP-08-03_MeshPart0
+    2300020: LP-08-03_MeshPart1
+    2300022: LP-08-03_MeshPart2
+    2300024: LP-08-04_MeshPart0
+    2300026: LP-08-04_MeshPart1
+    2300028: LP-08-05_MeshPart0
+    2300030: LP-08-05_MeshPart1
+    2300032: LP-08-05_MeshPart2
+    3300000: LP-08-01_MeshPart0
+    3300002: LP-08-01_MeshPart1
+    3300004: LP-08-01_MeshPart2
+    3300006: LP-08-01_MeshPart3
+    3300008: LP-08-02_MeshPart0
+    3300010: LP-08-02_MeshPart1
+    3300012: LP-08-02_MeshPart2
+    3300014: LP-08-02_MeshPart3
+    3300016: LP-08-02_MeshPart4
+    3300018: LP-08-03_MeshPart0
+    3300020: LP-08-03_MeshPart1
+    3300022: LP-08-03_MeshPart2
+    3300024: LP-08-04_MeshPart0
+    3300026: LP-08-04_MeshPart1
+    3300028: LP-08-05_MeshPart0
+    3300030: LP-08-05_MeshPart1
+    3300032: LP-08-05_MeshPart2
+    4300000: LP-08-01_MeshPart0
+    4300002: LP-08-01_MeshPart1
+    4300004: LP-08-01_MeshPart2
+    4300006: LP-08-01_MeshPart3
+    4300008: LP-08-02_MeshPart0
+    4300010: LP-08-02_MeshPart1
+    4300012: LP-08-02_MeshPart2
+    4300014: LP-08-02_MeshPart3
+    4300016: LP-08-02_MeshPart4
+    4300018: LP-08-03_MeshPart0
+    4300020: LP-08-03_MeshPart1
+    4300022: LP-08-03_MeshPart2
+    4300024: LP-08-04_MeshPart0
+    4300026: LP-08-04_MeshPart1
+    4300028: LP-08-05_MeshPart0
+    4300030: LP-08-05_MeshPart1
+    4300032: LP-08-05_MeshPart2
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131735'
+    second: {fileID: 2100000, guid: 72bb8ab66f6f96d498828ddb102dbcdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131736'
+    second: {fileID: 2100000, guid: f9f4d38b185fad54dab04782900c871e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 'Material #131737'
+    second: {fileID: 2100000, guid: 587b45b15494cd54c8adc44df604e090, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -32,13 +151,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -48,9 +172,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -61,7 +187,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

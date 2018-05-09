@@ -1,9 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: edd8a0d331b033a4abe3691238d1c580
 folderAsset: yes
 timeCreated: 1506010895
 licenseType: Free
 DefaultImporter:
+=======
+guid: 883a869e950a093479f559d18b5e726f
+folderAsset: yes
+timeCreated: 1517418597
+licenseType: Free
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> 4ba89a8ec1b000b195eadd4c02493c9363932d53
   userData: 
   assetBundleName: 
   assetBundleVariant: 

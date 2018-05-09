@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.VR;
 
 public class HandController : MonoBehaviour {
-	public VRNode hand;
+	public UnityEngine.XR.XRNode hand;
 	HandAnimator handAnimator;
 	public float fingerAnimationStart;
 	public float grabThreshold;
@@ -30,13 +30,13 @@ public class HandController : MonoBehaviour {
 		Physics.IgnoreCollision(GetComponentInChildren<Collider>(), feetCollider);
 
 		handAnimator = GetComponent<HandAnimator> ();
-		if (hand == VRNode.RightHand) {
+		if (hand == UnityEngine.XR.XRNode.RightHand) {
 			triggerTouch = OVRInput.RawNearTouch.RIndexTrigger;
 			thumbTouch = OVRInput.RawNearTouch.RThumbButtons;
 			triggerAxis = OVRInput.RawAxis1D.RIndexTrigger;
 			fistAxis = OVRInput.RawAxis1D.RHandTrigger;
 			hapticsChannel = OVRHaptics.RightChannel;
-		} else if (hand == VRNode.LeftHand) {
+		} else if (hand == UnityEngine.XR.XRNode.LeftHand) {
 			triggerTouch = OVRInput.RawNearTouch.LIndexTrigger;
 			thumbTouch = OVRInput.RawNearTouch.LThumbButtons;
 			triggerAxis = OVRInput.RawAxis1D.LIndexTrigger;
@@ -48,11 +48,11 @@ public class HandController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (GameManager.oculusControllerMode) {
-			Vector3 handPosition = InputTracking.GetLocalPosition (hand);
+			Vector3 handPosition = UnityEngine.XR.InputTracking.GetLocalPosition (hand);
 			if (handPosition.sqrMagnitude != 0) { // If hands are being tracked, hand position != (0, 0, 0).
-				transform.localPosition = InputTracking.GetLocalPosition (hand);
+				transform.localPosition = UnityEngine.XR.InputTracking.GetLocalPosition (hand);
 			}
-			transform.localRotation = InputTracking.GetLocalRotation (hand);
+			transform.localRotation = UnityEngine.XR.InputTracking.GetLocalRotation (hand);
 
 			bool currentGrab = OVRInput.Get (fistAxis) >= grabThreshold;
 
@@ -101,7 +101,7 @@ public class HandController : MonoBehaviour {
 						currentGrabbableObject = currentlyGrabbed.GetComponent<GrabbableObject> ();
 						if (!currentGrabbableObject.beingGrabbed) {
 							currentGrabbableObject.grabbableIndication[grabbableIndicatorIndex] = false;
-							currentGrabbableObject.Grab (transform, hand == VRNode.LeftHand, this);
+							currentGrabbableObject.Grab (transform, hand == UnityEngine.XR.XRNode.LeftHand, this);
 							grabMode = true;
 
 							// Official.

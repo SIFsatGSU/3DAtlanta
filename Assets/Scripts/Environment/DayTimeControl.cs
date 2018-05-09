@@ -31,8 +31,6 @@ public class DayTimeControl : MonoBehaviour {
     public Light sunLight;
     public Light moonLight;
     public float sunToFogRatio;
-    public float importantLightRadius;
-	public float updateLightInteval;
 
 	public Material redNeon;
 	public Material whiteNeon;

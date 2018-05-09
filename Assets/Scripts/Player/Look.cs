@@ -31,7 +31,7 @@ public class Look : MonoBehaviour {
         if (Time.timeScale > 0) {
 			// Ray cast
 			Ray forwardRay;
-			if (VRDevice.isPresent) {
+			if (UnityEngine.XR.XRDevice.isPresent) {
 				//Vector3 forward = InputTracking.GetLocalRotation (VRNode.Head) * new Vector3 (0, 0, 1);
 				//forward = transform.rotation * forward;
 				forwardRay = new Ray (playerCamera.transform.position, playerCamera.transform.forward);
@@ -54,7 +54,7 @@ public class Look : MonoBehaviour {
 				cameraProfile.depthOfField.enabled = false;
 			}*/
 
-			if (VRDevice.isPresent) {
+			if (UnityEngine.XR.XRDevice.isPresent) {
 				yEnable = 0;
 			} else {
 				yEnable = 1;

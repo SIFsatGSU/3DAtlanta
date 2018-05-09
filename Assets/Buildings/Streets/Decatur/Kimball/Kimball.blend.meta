@@ -3,7 +3,7 @@ guid: 9bc6021a570840b4aa22be1e46e87b2e
 timeCreated: 1473126266
 licenseType: Free
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: BezierCurve
     100002: Circle
@@ -34,6 +34,29 @@ ModelImporter:
     100052: //RootNode
     100054: Plane
     100056: Text
+    100058: Dormer
+    100060: Dormer_001
+    100062: Dormer_002
+    100064: Dormer_003
+    100066: Dormer_004
+    100068: Dormer_005
+    100070: Dormer_006
+    100072: Dormer_007
+    100074: Dormer_008
+    100076: Dormer_009
+    100078: Dormer_010
+    100080: Dormer_011
+    100082: Dormer_012
+    100084: Dormer_013
+    100086: Dormer_014
+    100088: Dormer_015
+    100090: Dormer_016
+    100092: Dormer_017
+    100094: Hand_rail
+    100096: Hand_rail_001
+    100098: Hand_rail_002
+    100100: Main_building
+    100102: Pillars
     400000: BezierCurve
     400002: Circle
     400004: Circle_001
@@ -63,6 +86,29 @@ ModelImporter:
     400052: //RootNode
     400054: Plane
     400056: Text
+    400058: Dormer
+    400060: Dormer_001
+    400062: Dormer_002
+    400064: Dormer_003
+    400066: Dormer_004
+    400068: Dormer_005
+    400070: Dormer_006
+    400072: Dormer_007
+    400074: Dormer_008
+    400076: Dormer_009
+    400078: Dormer_010
+    400080: Dormer_011
+    400082: Dormer_012
+    400084: Dormer_013
+    400086: Dormer_014
+    400088: Dormer_015
+    400090: Dormer_016
+    400092: Dormer_017
+    400094: Hand_rail
+    400096: Hand_rail_001
+    400098: Hand_rail_002
+    400100: Main_building
+    400102: Pillars
     2300000: BezierCurve
     2300002: Circle
     2300004: Circle_001
@@ -91,6 +137,29 @@ ModelImporter:
     2300050: Cylinder_001
     2300052: Plane
     2300054: Text
+    2300056: Dormer
+    2300058: Dormer_001
+    2300060: Dormer_002
+    2300062: Dormer_003
+    2300064: Dormer_004
+    2300066: Dormer_005
+    2300068: Dormer_006
+    2300070: Dormer_007
+    2300072: Dormer_008
+    2300074: Dormer_009
+    2300076: Dormer_010
+    2300078: Dormer_011
+    2300080: Dormer_012
+    2300082: Dormer_013
+    2300084: Dormer_014
+    2300086: Dormer_015
+    2300088: Dormer_016
+    2300090: Dormer_017
+    2300092: Hand_rail
+    2300094: Hand_rail_001
+    2300096: Hand_rail_002
+    2300098: Main_building
+    2300100: Pillars
     3300000: BezierCurve
     3300002: Circle
     3300004: Circle_001
@@ -119,6 +188,29 @@ ModelImporter:
     3300050: Cylinder_001
     3300052: Plane
     3300054: Text
+    3300056: Dormer
+    3300058: Dormer_001
+    3300060: Dormer_002
+    3300062: Dormer_003
+    3300064: Dormer_004
+    3300066: Dormer_005
+    3300068: Dormer_006
+    3300070: Dormer_007
+    3300072: Dormer_008
+    3300074: Dormer_009
+    3300076: Dormer_010
+    3300078: Dormer_011
+    3300080: Dormer_012
+    3300082: Dormer_013
+    3300084: Dormer_014
+    3300086: Dormer_015
+    3300088: Dormer_016
+    3300090: Dormer_017
+    3300092: Hand_rail
+    3300094: Hand_rail_001
+    3300096: Hand_rail_002
+    3300098: Main_building
+    3300100: Pillars
     4300000: Text
     4300002: Plane
     4300004: Cylinder_001
@@ -147,28 +239,177 @@ ModelImporter:
     4300050: Cube_001
     4300052: Cube
     4300054: Cylinder
+    4300056: Pillars
+    4300058: Hand_rail
+    4300060: Hand_rail_002
+    4300062: Hand_rail_001
+    4300064: Dormer_001
+    4300066: Dormer_002
+    4300068: Dormer_003
+    4300070: Dormer_004
+    4300072: Dormer_005
+    4300074: Dormer_006
+    4300076: Dormer_007
+    4300078: Dormer_008
+    4300080: Dormer_009
+    4300082: Dormer_010
+    4300084: Dormer_011
+    4300086: Dormer_012
+    4300088: Dormer_013
+    4300090: Dormer_014
+    4300092: Dormer_015
+    4300094: Dormer_016
+    4300096: Dormer_017
+    4300098: Dormer
+    4300100: Main_building
     7400000: Default Take
     9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Attic
+    second: {fileID: 2100000, guid: a11d0d07eb63d9549bece9472f9e583a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black_metal
+    second: {fileID: 2100000, guid: 949898352f8f8d141b3defecb873ba53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: e7d42834ad743a246a22fb66b527481c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kimball-Roof
+    second: {fileID: 2100000, guid: 8023f98fb368d384eb33a2e9a48fb877, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_1
+    second: {fileID: 2100000, guid: 3fd6f462039562449ba3ae2ef24a79d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_2
+    second: {fileID: 2100000, guid: 04e770fc39503434689c0211369a2f4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_3
+    second: {fileID: 2100000, guid: 44823711897cf7748ad3238428797d20, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_4
+    second: {fileID: 2100000, guid: 3d5212befe73e4941802e816da072217, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_5
+    second: {fileID: 2100000, guid: 6842509349e3c7b4e98022908077f3e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_6
+    second: {fileID: 2100000, guid: 85f2a864cb97e694cb76d13d924d5b9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Poster_7
+    second: {fileID: 2100000, guid: bb63cc4c46e4a34499e42248996fe57f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red_Brick
+    second: {fileID: 2100000, guid: 4209d1507fe611b48a7705d04cc6ab14, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Store_front
+    second: {fileID: 2100000, guid: edc776f38594ad742a742f0e544c5f8d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Text
+    second: {fileID: 2100000, guid: 0237feed8a6399d4bad67cac08918037, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tower_Body
+    second: {fileID: 2100000, guid: f75addbb60dc9d74c9f64f7c20d71dd6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tower_Neck
+    second: {fileID: 2100000, guid: 50269282716fe504d9468671faea8960, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tower_Top
+    second: {fileID: 2100000, guid: 5611114e37f18e84bac8276d218fc834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White_Brick
+    second: {fileID: 2100000, guid: 75b6767445b01134c9c6b4375f86db02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window_3
+    second: {fileID: 2100000, guid: 837db9ca4010d0a479ed27a3e8d8f6da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window_Mid_1
+    second: {fileID: 2100000, guid: ef586e379f702de438b48ac664b74608, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window_Top_1
+    second: {fileID: 2100000, guid: a76861c19e79ab3479f1079d85a4a5a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window_Top_2
+    second: {fileID: 2100000, guid: fec1381247465054095e17729f5ab108, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood-1
+    second: {fileID: 2100000, guid: a91bd86730bf0a648a5929cd3b3bee39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood-2
+    second: {fileID: 2100000, guid: 629bc8b74bb739242a4a1d331dbf8fec, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 0
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    resampleRotations: 1
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
     isReadable: 1
   meshes:
@@ -176,13 +417,18 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
@@ -192,9 +438,11 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -205,7 +453,10 @@ ModelImporter:
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1

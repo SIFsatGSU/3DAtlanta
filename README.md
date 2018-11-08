@@ -46,18 +46,18 @@ The goal for 3D Atlanta is to showcase an interactive space where students can e
 - The Chronolens and the Georgia State Comparison
     - The Chronolens is the feature that allows the user to look and compare the differences between Atlanta today and the representation of Atlanta circa 1928. At specific designated areas highlighted by the neon particle effects, the player can access the Chronolens.
     
-[![Artifacts Demo Video](https://img.youtube.com/vi/AdSGrlQ73vo.jpg)](https://www.youtube.com/watch?v=AdSGrlQ73vo)
+[![Artifacts Demo Video](https://img.youtube.com/vi/AdSGrlQ73vo/0.jpg)](https://www.youtube.com/watch?v=AdSGrlQ73vo)
 
 - Historic Landmark Buildings from Atlanta
     - Many landmark buildings that no longer exist are also in 3D Atlanta. Using photographs and any documentation that was recovered, they were all carefully modeled to look similar.
 
-[Bailey's Theatre](https://i.imgur.com/sZtWspp.jpg)
-[Peachtree Center Ave.](https://i.imgur.com/KYfetMy.jpg)
+![Bailey's Theatre](https://i.imgur.com/sZtWspp.jpg)
+![Peachtree Center Ave.](https://i.imgur.com/KYfetMy.jpg)
 
 - Artifacts
     - Although this feature is a very subtle one of 3D Atlanta, there are artifacts placed all around the scene. These are all grabbable and interactable. (Make sure to look for all of them!)
 
-[![Artifacts Demo Video](https://img.youtube.com/vi/u-GT4TWeGB8.jpg)](https://www.youtube.com/watch?v=u-GT4TWeGB8)
+[![Artifacts Demo Video](https://img.youtube.com/vi/u-GT4TWeGB8/0.jpg)](https://www.youtube.com/watch?v=u-GT4TWeGB8)
 
 - Oculus Rift Support
     - You can explore the streets of Atlanta with your computer or even in VR! 3D Atlanta fully supports Oculus Rift VR headsets.
@@ -140,5 +140,5 @@ The Unity side will be mainly experimenting with the scale, placement, and inter
 | Brennan Collins | Program Co-Director| [Link](http://studentinnovation.gsucreate.org/meet-the-fellows/brennan-collins/)|
 | Spencer Roberts | Program Co-Director| [Link](http://studentinnovation.gsucreate.org/meet-the-fellows/spencer-roberts/)|
 
-##Etc.
+## Etc.
 - Specific photos with watermark are property of Georgia State Library

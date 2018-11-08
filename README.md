@@ -45,7 +45,8 @@ The goal for 3D Atlanta is to showcase an interactive space where students can e
 ## Notable Features
 - The Chronolens and the Georgia State Comparison
     - The Chronolens is the feature that allows the user to look and compare the differences between Atlanta today and the representation of Atlanta circa 1928. At specific designated areas highlighted by the neon particle effects, the player can access the Chronolens.
-Click Me!
+    - Click Me!
+    
 [![Artifacts Demo Video](https://img.youtube.com/vi/AdSGrlQ73vo/maxresdefault.jpg)](https://www.youtube.com/watch?v=AdSGrlQ73vo)
 
 - Historic Landmark Buildings from Atlanta
@@ -56,6 +57,7 @@ Click Me!
 
 - Artifacts
     - Although this feature is a very subtle one of 3D Atlanta, there are artifacts placed all around the scene. These are all grabbable and interactable. (Make sure to look for all of them!)
+
 Click Me!
 [![Artifacts Demo Video](https://img.youtube.com/vi/u-GT4TWeGB8/maxresdefault.jpg)](https://www.youtube.com/watch?v=u-GT4TWeGB8)
 

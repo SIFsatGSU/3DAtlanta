@@ -10,14 +10,13 @@ Visit the Student Innovation Fellowship page about [Open World Atlanta](http://s
 ## Table of Contents
 
 - [Motivation](#motivation)
-- [Build Status](#build-status)
 - [Screenshots and Media](#screenshots-and-media)
 - [Tools Used](#tech-and-frameworks-used)
 - [Notable Features](#notable-features)
 - [Code Examples](#code-example)
 - [Current WorkFlow](#current-basic-workflow-outline)
-- [Installation, Version, and Dependencies](#installation,-version,-dependencies)
-- [How to use? (Deployment)](#how-to-use?-(deployment))
+- [Installation, Version, and Dependencies](#installation-version-and-dependencies)
+- [How to use? (Deployment)](#how-to-use-deployment)
 - [Current Goals](#current-goals)
 - [Credits](#credits)
 
@@ -47,7 +46,7 @@ The goal for 3D Atlanta is to showcase an interactive space where students can e
     - The Chronolens is the feature that allows the user to look and compare the differences between Atlanta today and the representation of Atlanta circa 1928. At specific designated areas highlighted by the neon particle effects, the player can access the Chronolens.
     - Click Me!
     
-[![Artifacts Demo Video](https://img.youtube.com/vi/AdSGrlQ73vo/maxresdefault.jpg)](https://www.youtube.com/watch?v=AdSGrlQ73vo)
+[![Chronolens Demo Video](https://img.youtube.com/vi/AdSGrlQ73vo/0.jpg)](https://www.youtube.com/watch?v=AdSGrlQ73vo)
 
 - Historic Landmark Buildings from Atlanta
     - Many landmark buildings that no longer exist are also in 3D Atlanta. Using photographs and any documentation that was recovered, they were all carefully modeled to look similar.
@@ -57,8 +56,8 @@ The goal for 3D Atlanta is to showcase an interactive space where students can e
 
 - Artifacts
     - Although this feature is a very subtle one of 3D Atlanta, there are artifacts placed all around the scene. These are all grabbable and interactable. (Make sure to look for all of them!)
-
-Click Me!
+    - Click Me!
+    
 [![Artifacts Demo Video](https://img.youtube.com/vi/u-GT4TWeGB8/maxresdefault.jpg)](https://www.youtube.com/watch?v=u-GT4TWeGB8)
 
 - Oculus Rift Support
